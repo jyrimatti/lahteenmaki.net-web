@@ -10,3 +10,6 @@
 [submodule "dev_*14"]
 	path = dev_*14
 	url = https://github.com/jyrimatti/dev_star14
+[submodule "dev_*"]
+	path = dev_*
+	url = https://github.com/jyrimatti/dev_star
