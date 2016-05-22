@@ -4,3 +4,9 @@
 [submodule "console"]
 	path = console
 	url = https://github.com/jyrimatti/webconsole
+[submodule "dev_*15"]
+	path = dev_*15
+	url = https://github.com/jyrimatti/dev_star15
+[submodule "dev_*14"]
+	path = dev_*14
+	url = https://github.com/jyrimatti/dev_star14
