@@ -1,0 +1,6 @@
+[submodule "bus"]
+	path = bus
+	url = https://github.com/jyrimatti/businfo
+[submodule "console"]
+	path = console
+	url = https://github.com/jyrimatti/webconsole

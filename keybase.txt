@@ -1,0 +1,78 @@
+==================================================================
+https://keybase.io/jyrimatti
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://lahteenmaki.net
+  * I am jyrimatti (https://keybase.io/jyrimatti) on keybase.
+  * I have a public key with fingerprint 38E6 FC6A C104 7CEC 71CE  71E7 1959 B8A4 F22F EC94
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.8.18"
+        },
+        "key": {
+            "eldest_kid": "0101ab95792030bb22a11a20b4ee124ae392a4339202aa1fffa196f8c391af565c960a",
+            "fingerprint": "38e6fc6ac1047cec71ce71e71959b8a4f22fec94",
+            "host": "keybase.io",
+            "key_id": "1959b8a4f22fec94",
+            "kid": "0101ab95792030bb22a11a20b4ee124ae392a4339202aa1fffa196f8c391af565c960a",
+            "uid": "ca07952904aaa4b7fe4c0e60593d5219",
+            "username": "jyrimatti"
+        },
+        "service": {
+            "hostname": "lahteenmaki.net",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1460053533,
+    "expire_in": 157680000,
+    "prev": "fd6462949fe45d3e58a992e3cbc9c2b5c1f7ddabd2bc21518d1ab46bc0e1dfb9",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Comment: GPGTools - http://gpgtools.org
+
+owGtUn9MVVUcfygIvKQeTrSB/PCyQVuP5/393n2Y4nKhsoyZBSrsce6958Llx33P
+9y7gSwiWQAEDEVGBKIjsTUsJBKSSBAYD7WlJMtxwxkpQ0F5To5VQ2b2M2tr6s7Oz
+s7NzPt/P9/P5nFMTsFzj5zXepDu1e2uOzcs9y2qSVrgiDyKslXci5oMIly1CSVZ3
+EsiBiBnJgk4WOKBBtEZIVh4aMh0RSxg9kgftDtEqKSjUYDJgJqRQr+LVapjNQ4ds
+yRJ59RZDMcAylJHBUQJlWRwHGAZwlCUhxHASQILBAUkoK4oDgAmCADCGFkwcwWBA
+oGiKY2gUKA0FUUqHdptdVCUihAnSAkcDDkNJIwc5I8ZBI6ZMhmJYEyAFHBcgx5BK
+YYbVIf/LDLKo1LIo7z/w/7Pu3EU6DqBGhsIZlAQAkKxRgCSHQhqlGIKncIxRgQ5o
+Xwo+02kXc4Asi2qqynGeyEE1WdXKEiQbZMgQSjkgSzRIUH0Rm90qWzlrtnKZIcs2
+s1orO20qOB+yliUaCytKvBKlUvDuP2+IKVBOFlVijKRRlCIogtAj8IBNtEOLqCIo
+I21ClaH2gXkKp8DTJI0zJKNYoXgCUibAMDgkOJZjOJylOEww8jxgeZzlcIzCTLyS
+J0mzim2MF1jVsQPul6yImVR0gnSF0iGmS0DOtUOksHzZOm+Nl59mhc8y9ZNqtP66
+v39uXYJOU+nOXPllV8K65t2TcU/C3Y0TjfUVre6ZOnlP3bbE5BtPff7Wy394okLt
+bX+u928tHpgp/OJkTV5Jwqlnr8W+d79muOKZveWhoY+Wf+28Td0NGx72HEgIKm1P
+CvB77qXp3rHwvtTXJg3n9pfO7xJ+7YjQXjjZe35oVXAwUjBQ9dD/ykBfzFi3a2j6
+lwfXc9DjJZfWr9SlTGj73qBD5vLmH/Bdo6PVC0UdoyXjdxamd/xWsiM1qP1IfdNQ
+c/h2b2v+xQYDfThYil19ehZsP3Zz38dHrgQyIYO9bR9kb7hdW8kmxxS9qSkKc0yc
+cfSvLdpMe/tWRzekXne9/tmxnp2Rl+TLtb3FgeaRuIKzRV3lP9e4MvdMVqV8esjP
+t9XWvXHqvvNetJxbO/ViDzr/e8GhqW0/mgIzWswbrq4pS8y8sBCz6vt91QVBY3Vh
+5/vL0ttx7m6a7cS9V4NCR/RrmrbMRFY2+OZ+u+VyRqAUsmmz+8a4ZSTeR/fVlKd8
+8GjSNzN8w/MPTY3oEJXYd/FEQihaETAa29E8p02qTZ78KW1tiO4JW9YZVP/05LXW
+41u/AwFpltXV7+8965Q8LXFva6O0G33mvMNAlDu6+KNGECDM2jclxpc+6njBdadL
+3xnZ8+EPM4/T+9tc/NVd3e/s9CYLPnlccSs+5Yz/4dmWtMEqZiRfvCU2nPbcfOVc
+cudf
+=9hYW
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jyrimatti
+
+==================================================================
