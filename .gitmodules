@@ -16,3 +16,9 @@
 [submodule "dev_**"]
 	path = dev_**
 	url = https://github.com/jyrimatti/dev_star2
+[submodule "24-days-2012"]
+	path = 24-days-2012
+	url = https://github.com/jyrimatti/24-days-2012
+[submodule "stiebel"]
+	path = stiebel
+	url = https://github.com/jyrimatti/stiebel
