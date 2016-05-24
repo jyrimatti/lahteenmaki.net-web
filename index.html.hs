@@ -1,25 +1,14 @@
-#!/usr/bin/ghc -outputdir /tmp/
+#!/usr/bin/env nix-shell
+#!nix-shell -i runhaskell -p 'haskellPackages.ghcWithPackages(p: with p; [text clay])'
 {-# OPTIONS_GHC -Wall #-}
-{-# LANGUAGE OverloadedStrings, TupleSections #-}
-import Network.FastCGI
-import System.Environment.Executable 
-import System.Directory
-import Data.Text.Lazy.Encoding (encodeUtf8)
+{-# LANGUAGE OverloadedStrings, TupleSections, FlexibleContexts, TypeFamilies #-}
+import Data.Text.Lazy (unpack)
 
 import Util.Markup
 import Util.HTML.HTML5
-import qualified Classes as C
+import Util.HTML.HTML5.Attributes (Class(..))
 
-modTime = getScriptPath >>= \script -> getModificationTime $ case script of
-    Executable fp -> fp
-    RunGHC fp -> fp
-
-main = modTime >>= mainn
-mainn started = modTime >>= \modified -> if modified /= started then (return ()) else runOneFastCGIorCGI app >>= \isFast -> if isFast then mainn started else return ()
-
-app = do
-  setHeader "Content-type" "text/html; charset=UTF-8"
-  outputFPS $ encodeUtf8 $ render content
+main = putStrLn $ unpack $ render content
 
 content :: Markup
 content = ("text/html",) $ Html ? do
@@ -36,25 +25,25 @@ content = ("text/html",) $ Html ? do
         css "style.css"
         Script ? analytics
     Body ? do
-        Div << C.container ? do
-            Div << C.header ? do
+        Div << Class "container" ? do
+            Div << Class "header" ? do
                 H1 ? "jyri-matti lähteenmäki"
-            Div << C.section ? presentations
-            Div << C.section ? javastuff
-            Div << C.section ? businfo
-            Div << C.section ? tweets
-            Div << C.section << C.books ? books
-            Div << C.section ? ohjelmointi
-            Div << C.section ? perhe
-            Div << C.section ? yhteys
-            Div << C.section ? tamasivu
-            Div << C.footer ? "© Jyri-Matti Lähteenmäki 2014"
+            Div << Class "section" ? presentations
+            Div << Class "section" ? javastuff
+            Div << Class "section" ? businfo
+            Div << Class "section" ? tweets
+            Div << Class "section" << Class "books" ? books
+            Div << Class "section" ? ohjelmointi
+            Div << Class "section" ? perhe
+            Div << Class "section" ? yhteys
+            Div << Class "section" ? tamasivu
+            Div << Class "footer" ? "© Jyri-Matti Lähteenmäki 2014"
 
 box name body = do
     H2 ? name
-    Div << C.boxcontent ? body
+    Div << Class "boxcontent" ? body
 
-block title href body = Div << C.subsection ? do
+block title href body = Div << Class "subsection" ? do
                            H3 ? do
                                 A << Href href ? title
                            body
@@ -118,7 +107,7 @@ ohjelmointi = box "dev" $ do
     block "projects" $
         Div ? do
             A << Href "http://github.com/jyrimatti" ? "GitHub"
-  where block title body = Div << C.subsection ? do
+  where block title body = Div << Class "subsection" ? do
                                H3 ? title
                                body
 

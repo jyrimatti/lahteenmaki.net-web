@@ -1,6 +1,7 @@
-#!/usr/bin/ghc -outputdir /tmp/
+#!/usr/bin/env nix-shell
+#!nix-shell -i runhaskell -p 'haskellPackages.ghcWithPackages(p: with p; [text fastcgi directory HTTP http-conduit executable-path])'
 {-# OPTIONS_GHC -Wall #-}
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, FlexibleContexts #-}
 import Network.FastCGI
 import System.Environment.Executable 
 import System.Directory

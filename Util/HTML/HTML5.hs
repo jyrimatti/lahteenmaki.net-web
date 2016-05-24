@@ -1,4 +1,4 @@
-{-# LANGUAGE NoMonomorphismRestriction #-}
+{-# LANGUAGE NoMonomorphismRestriction, FlexibleContexts, TypeFamilies  #-}
 module Util.HTML.HTML5 (
     module X,
     ahref,
