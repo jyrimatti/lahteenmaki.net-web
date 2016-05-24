@@ -1,24 +1,24 @@
 [submodule "bus"]
 	path = bus
-	url = https://github.com/jyrimatti/businfo
+	url = git@github.com:jyrimatti/businfo.git
 [submodule "console"]
 	path = console
-	url = https://github.com/jyrimatti/webconsole
+	url = git@github.com:jyrimatti/webconsole.git
 [submodule "dev_*15"]
 	path = dev_*15
-	url = https://github.com/jyrimatti/dev_star15
+	url = git@github.com:jyrimatti/dev_star15.git
 [submodule "dev_*14"]
 	path = dev_*14
-	url = https://github.com/jyrimatti/dev_star14
+	url = git@github.com:jyrimatti/dev_star14.git
 [submodule "dev_*"]
 	path = dev_*
-	url = https://github.com/jyrimatti/dev_star
+	url = git@github.com:jyrimatti/dev_star.git
 [submodule "dev_**"]
 	path = dev_**
-	url = https://github.com/jyrimatti/dev_star2
+	url = git@github.com:jyrimatti/dev_star2.git
 [submodule "24-days-2012"]
 	path = 24-days-2012
-	url = https://github.com/jyrimatti/24-days-2012
+	url = git@github.com:jyrimatti/24-days-2012.git
 [submodule "stiebel"]
 	path = stiebel
-	url = https://github.com/jyrimatti/stiebel
+	url = git@github.com:jyrimatti/stiebel.git
