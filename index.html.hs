@@ -123,12 +123,14 @@ businfo = box "bus info" $ do
 
 tamasivu = box "this site" $ do
     Ul ? do
-        Li ? "FastCGI. Apache. Haskell."
+        Li ? "Haskell. Nix. Nixos."
         Li ? "Really-type-safe HTML. Haskell."
         Li ? do
             "Styles "
             A << Href "http://fvisser.nl/clay/" ? "Clay"
             ". Haskell."
+        Li ? do
+            A << Href "https://github.com/jyrimatti/lahteenmaki.net" ? "https://github.com/jyrimatti/lahteenmaki.net"
 
 analytics = "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\
 \  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\
