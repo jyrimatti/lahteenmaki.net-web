@@ -119,7 +119,7 @@ books = box "read books" $ do
     Script << Src "https://www.goodreads.com/review/custom_widget/29730596.-?cover_position=left&cover_size=small&num_books=100&order=d&shelf=read&show_author=1&show_cover=1&show_rating=0&show_review=0&show_tags=0&show_title=1&sort=date_read&widget_bg_color=FFFFFF&widget_bg_transparent=true&widget_border_width=1&widget_id=1435785230&widget_text_color=000000&widget_title_size=small&widget_width=full" ? empty
 
 businfo = box "bus info" $ do
-    IFrame << Src "http://lahteenmaki.net/bus" << Id "businfo" ? empty
+    IFrame << Src "/bus" << Id "businfo" ? empty
 
 tamasivu = box "this site" $ do
     Ul ? do
