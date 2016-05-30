@@ -81,12 +81,13 @@ perhe = box "famiglia" $ do
 yhteys = box "contact" $ do
     Ol ? do
         Li ? "etunimi@sukunimi.net"
+        Li ? ahref "https://keybase.io/jyrimatti"
         Li ? do A << Href "https://pgp.mit.edu/pks/lookup?search=0x1959b8a4f22fec94&fingerprint=on" ? "F22FEC94"
         Li ? ahref "https://plus.google.com/+Jyri-MattiLähteenmäki"
         Li ? ahref "https://twitter.com/jyrimatti"
         Li ? ahref "https://pinboard.in/u:jyrimatti/"
         Li ? ahref "https://github.com/jyrimatti"
-        Li ? ahref "http://www.linkedin.com/in/jyrimatti"
+        Li ? ahref "https://www.linkedin.com/in/jyrimatti"
         Li ? ahref "https://www.goodreads.com/jyrimatti"
         Li ? ahref "https://www.facebook.com/jyrimatti.lahteenmaki"
         Li ? ahref "https://vimeo.com/jyrimatti"

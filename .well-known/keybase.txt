@@ -1,0 +1,107 @@
+==================================================================
+
+https://keybase.io/jyrimatti
+
+--------------------------------------------------------------------
+
+
+
+I hereby claim:
+
+
+
+  * I am an admin of https://lahteenmaki.net
+
+  * I am jyrimatti (https://keybase.io/jyrimatti) on keybase.
+
+  * I have a public key ASBoEyfTezHcGMySrrI5pFcoHIavvxGK_66W8HSAfGmaUwo
+
+
+
+To do so, I am signing this object:
+
+
+
+{
+
+    "body": {
+
+        "key": {
+
+            "eldest_kid": "0101ab95792030bb22a11a20b4ee124ae392a4339202aa1fffa196f8c391af565c960a",
+
+            "host": "keybase.io",
+
+            "kid": "0120681327d37b31dc18cc92aeb239a457281c86afbf118affae96f074807c699a530a",
+
+            "uid": "ca07952904aaa4b7fe4c0e60593d5219",
+
+            "username": "jyrimatti"
+
+        },
+
+        "service": {
+
+            "hostname": "lahteenmaki.net",
+
+            "protocol": "https:"
+
+        },
+
+        "type": "web_service_binding",
+
+        "version": 1
+
+    },
+
+    "client": {
+
+        "name": "keybase.io go client",
+
+        "version": "1.0.14"
+
+    },
+
+    "ctime": 1464641296,
+
+    "expire_in": 504576000,
+
+    "merkle_root": {
+
+        "ctime": 1464641131,
+
+        "hash": "6a9e802e1716aed19be41a90ef5d56d252d5d1aee48a9991bd3f2ab0ddde6512ba9b466516bbf60b33dc8c82d5b3eb2bad517a74d78d4253fa1d8a8758277d9f",
+
+        "seqno": 474185
+
+    },
+
+    "prev": "b2345a48b45d6d308cce50a9056df0e46226cb5d442ed63c2b7344d895541a26",
+
+    "seqno": 13,
+
+    "tag": "signature"
+
+}
+
+
+
+which yields the signature:
+
+
+
+g6Rib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgaBMn03sx3BjMkq6yOaRXKByGr78Riv+ulvB0gHxpmlMKp3BheWxvYWTFAvl7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxYWI5NTc5MjAzMGJiMjJhMTFhMjBiNGVlMTI0YWUzOTJhNDMzOTIwMmFhMWZmZmExOTZmOGMzOTFhZjU2NWM5NjBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwNjgxMzI3ZDM3YjMxZGMxOGNjOTJhZWIyMzlhNDU3MjgxYzg2YWZiZjExOGFmZmFlOTZmMDc0ODA3YzY5OWE1MzBhIiwidWlkIjoiY2EwNzk1MjkwNGFhYTRiN2ZlNGMwZTYwNTkzZDUyMTkiLCJ1c2VybmFtZSI6Imp5cmltYXR0aSJ9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoibGFodGVlbm1ha2kubmV0IiwicHJvdG9jb2wiOiJodHRwczoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMTQifSwiY3RpbWUiOjE0NjQ2NDEyOTYsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTQ2NDY0MTEzMSwiaGFzaCI6IjZhOWU4MDJlMTcxNmFlZDE5YmU0MWE5MGVmNWQ1NmQyNTJkNWQxYWVlNDhhOTk5MWJkM2YyYWIwZGRkZTY1MTJiYTliNDY2NTE2YmJmNjBiMzNkYzhjODJkNWIzZWIyYmFkNTE3YTc0ZDc4ZDQyNTNmYTFkOGE4NzU4Mjc3ZDlmIiwic2Vxbm8iOjQ3NDE4NX0sInByZXYiOiJiMjM0NWE0OGI0NWQ2ZDMwOGNjZTUwYTkwNTZkZjBlNDYyMjZjYjVkNDQyZWQ2M2MyYjczNDRkODk1NTQxYTI2Iiwic2Vxbm8iOjEzLCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQOFdKkdsUvZwPo1W7QhyjYt/h6wMg1w3sxPzRoz+oiHYsN17SCUsIgVugla41jzVbTCAN0lX6yOV5bE+8Z4FEwioc2lnX3R5cGUgo3RhZ80CAqd2ZXJzaW9uAQ==
+
+
+
+And finally, I am proving ownership of this host by posting or
+
+appending to this document.
+
+
+
+View my publicly-auditable identity here: https://keybase.io/jyrimatti
+
+
+
+==================================================================
