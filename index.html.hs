@@ -24,23 +24,24 @@ content = ("text/html",) $ Html ? do
         Script << Type "text/javascript" ? "setTimeout(function() {document.getElementById('businfo').outerHTML = 'Sovellus on käytettävissä osoitteessa: http://lahteenmaki.net/bus';}, 30000)"
         css "style.css"
         Script ? analytics
-    Body ? do
+    Body << Onload "window.hl = function() { Array.prototype.slice.call(document.getElementsByClassName('section')).map(function(s) { s.className = s.className.replace('lifted', ''); }); if (location.hash == '') { document.getElementsByTagName('html')[0].className = ''; } else { document.getElementsByTagName('html')[0].className = 'highlight'; document.getElementsByClassName(location.hash.slice(1))[0].className += ' lifted'; document.body.onclick = function() { location.hash = ''; }; } }; hl();" << Onhashchange "window.hl();" ? do
         Div << Class "container" ? do
             Div << Class "header" ? do
                 H1 ? "jyri-matti lähteenmäki"
-            Div << Class "section" ? presentations
-            Div << Class "section" ? javastuff
-            Div << Class "section" ? businfo
-            Div << Class "section" ? tweets
-            Div << Class "section" << Class "books" ? books
-            Div << Class "section" ? ohjelmointi
-            Div << Class "section" ? perhe
-            Div << Class "section" ? yhteys
-            Div << Class "section" ? tamasivu
-            Div << Class "footer" ? "© Jyri-Matti Lähteenmäki 2014"
+            Div << Class "section" << Class "presentations" ? presentations
+            Div << Class "section" << Class "java-stuff" ? javastuff
+            Div << Class "section" << Class "bus-info" ? businfo
+            Div << Class "section" << Class "tweets" ? tweets
+            Div << Class "section" << Class "read-books" ? books
+            Div << Class "section" << Class "dev" ? ohjelmointi
+            Div << Class "section" << Class "famiglia" ? perhe
+            Div << Class "section" << Class "contact" ? yhteys
+            Div << Class "section" << Class "this-site" ? tamasivu
+            Div << Class "footer" ? "© Jyri-Matti Lähteenmäki 2016"
 
 box name body = do
-    H2 ? name
+    H2 ? do
+        A << Id name << Href ("#" ++ map (\c -> if c == ' ' then '-' else c) name) ? text name
     Div << Class "boxcontent" ? body
 
 block title href body = Div << Class "subsection" ? do

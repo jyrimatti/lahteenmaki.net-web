@@ -69,6 +69,18 @@ css = do
         div <? do
             padding (em 1) (em 1) (em 1) (em 1)
     forM_ [0..9] rotatedSection
+    ".highlight" ? do
+        backgroundColor "#222"
+        ".section" ? do
+            opacity 0.15
+        ".section.lifted" ? do
+            opacity 1.0
+            position fixed
+            zIndex 999
+            marginRight auto
+            top (px 90)
+            left (pct 50)
+            marginLeft (px (-210))
     ".subsection" ? a ? do
         paddingLeft (em 0.5)
     a ? do
