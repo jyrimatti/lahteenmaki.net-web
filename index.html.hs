@@ -58,11 +58,13 @@ javastuff = box "java-stuff" $ do
         Div ? "A layer on top of JPA2 to make querying a database even more complex ;)"
 
 presentations = box "presentations" $ do
-    block "Composing functions and beyond" "http://lahteenmaki.net/dev_*15/" $
+    block "Optics in Programming" "https://lahteenmaki.net/dev_*16/" $
+        Div ? "Studying lenses and prisms, profunctors and other category theory"
+    block "Composing functions and beyond" "https://lahteenmaki.net/dev_*15/" $
         Div ? "Investigating composition for different kinds of functions"
-    block "Functors, Applicatives, Monads ...WAT?" "http://lahteenmaki.net/dev_*14/" $
+    block "Functors, Applicatives, Monads ...WAT?" "https://lahteenmaki.net/dev_*14/" $
         Div ? "Explaining Monads and stuff"
-    block "to Type a Class" "http://lahteenmaki.net/dev_*/" $
+    block "to Type a Class" "https://lahteenmaki.net/dev_*/" $
         Div ? "Thinking of type classes, Haskell, Scala and Java"
 
 perhe = box "famiglia" $ do
