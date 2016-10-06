@@ -4,6 +4,9 @@
 [submodule "console"]
 	path = console
 	url = git@github.com:jyrimatti/webconsole.git
+[submodule "dev_*16"]
+	path = dev_*16
+	url = git@github.com:jyrimatti/dev_star16.git
 [submodule "dev_*15"]
 	path = dev_*15
 	url = git@github.com:jyrimatti/dev_star15.git
