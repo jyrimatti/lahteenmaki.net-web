@@ -53,8 +53,11 @@ css = do
         maxHeight (px 350)
         overflow scroll
     ".section" ? do
-        boxShadow (px (-3)) (px 1) (px 15) lightBlue
         background (linearGradient (angular (deg 30)) [(lightBlue,pct (-50)), (white,50), (white,100)])
+    "div.sourceCode" ? do
+        background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (white,50), (white,100)])
+    ".section" <> "div.sourceCode" ? do
+        boxShadow (px (-3)) (px 1) (px 15) lightBlue
         display inlineBlock
         textAlign (alignSide sideLeft)
         width (px 420)
