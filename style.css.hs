@@ -16,7 +16,7 @@ main = putStrLn $ unpack $ renderWith compact [] css
 lightGray = rgb 200 200 200
 lightBlue = "#61CDF5"
 
-roundCorders = borderRadius (em 0.4) (em 0.4) (em 0.4) (em 0.4)
+roundCorners = borderRadius (em 0.4) (em 0.4) (em 0.4) (em 0.4)
 
 css :: Css
 css = do
@@ -33,7 +33,7 @@ css = do
         "white-space" -: "nowrap"
     ".header" <> ".section" ? do
         margin (em 1) (em 1) (em 1) (em 1)
-        roundCorders
+        roundCorners
         fontFamily ["cursive"] []
     ".footer" ? do
         color $ grayish 142
@@ -46,7 +46,7 @@ css = do
         background (linearGradient (angular (deg 120)) [(grayish 255,0), (grayish 242,40), (grayish 255,100)])
         opacity 0.5
         transform $ translate3d 0 0 1
-        roundCorders
+        roundCorners
     ".books" ? div ? div ? h2 ? do
         display none
     ".boxcontent" ? do
@@ -56,6 +56,7 @@ css = do
         background (linearGradient (angular (deg 30)) [(lightBlue,pct (-50)), (white,50), (white,100)])
     "div.sourceCode" ? do
         background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (white,50), (white,100)])
+        roundCorners
     ".section" <> "div.sourceCode" ? do
         boxShadow (px (-3)) (px 1) (px 15) lightBlue
         display inlineBlock
