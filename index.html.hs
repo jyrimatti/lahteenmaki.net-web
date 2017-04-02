@@ -20,8 +20,8 @@ content = ("text/html",) $ Html ? do
         metaOGType "website"
         metaOGUrl "http://www.lahteenmaki.net"
         metaOGSiteName "Lähteenmäki.net"
-        Meta << Name "viewport" << Content "width=500, initial-scale=1" ? empty
-        Script << Type "text/javascript" ? "setTimeout(function() {document.getElementById('businfo').outerHTML = 'Sovellus on käytettävissä osoitteessa: http://lahteenmaki.net/bus';}, 30000)"
+        Meta << Name "viewport" << Content "width=device-width, initial-scale=1.0" ? empty
+        Script << Type "text/javascript" ? "setTimeout(function() {document.getElementById('businfo').outerHTML = 'Sovellus on käytettävissä osoitteessa: https://lahteenmaki.net/bus';}, 30000)"
         css "style.css"
         Script ? analytics
     Body << Onload "window.hl = function() { Array.prototype.slice.call(document.getElementsByClassName('section')).map(function(s) { s.className = s.className.replace('lifted', ''); }); if (location.hash == '') { document.getElementsByTagName('html')[0].className = ''; } else { document.getElementsByTagName('html')[0].className = 'highlight'; document.getElementsByClassName(location.hash.slice(1))[0].className += ' lifted'; document.body.onclick = function() { location.hash = ''; }; } }; hl();" << Onhashchange "window.hl();" ? do
@@ -101,7 +101,7 @@ ohjelmointi = box "dev" $ do
             A << Href "https://twitter.com/jyrimatti" ? "Twitter"
     block "blog" $
         Div ? do
-            ahref "http://blog.lahteenmaki.net"
+            ahref "https://blog.lahteenmaki.net"
     block "thoughts" $
         Div ? do
             A << Href "https://plus.google.com/102784575413360548836/posts" ? "google+"

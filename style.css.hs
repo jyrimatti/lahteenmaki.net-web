@@ -30,7 +30,6 @@ css = do
         textShadow 0 0 (px 50) lightBlue
         color lightGray
         padding (em 0.1) (em 0.1) (em 0.1) (em 0.1)
-        "white-space" -: "nowrap"
     ".header" <> ".section" ? do
         margin (em 1) (em 1) (em 1) (em 1)
         roundCorners
@@ -54,6 +53,7 @@ css = do
         overflow scroll
     ".section" ? do
         background (linearGradient (angular (deg 30)) [(lightBlue,pct (-50)), (white,50), (white,100)])
+        maxWidth (em 25)        
     "div.sourceCode" ? do
         background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (white,50), (white,100)])
         roundCorners
@@ -61,7 +61,7 @@ css = do
         boxShadow (px (-3)) (px 1) (px 15) lightBlue
         display inlineBlock
         textAlign (alignSide sideLeft)
-        width (px 420)
+        width (pct 85)
         h2 ? do
             color lightGray
             let pad = (em 0.6)
