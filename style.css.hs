@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i runhaskell -p 'haskellPackages.ghcWithPackages(p: with p; [text clay])'
+#!nix-shell -i runhaskell -p "haskellPackages.ghcWithPackages(p: with p; [text clay])"
 {-# OPTIONS_GHC -Wall #-}
 {-# LANGUAGE OverloadedStrings #-}
 import Data.Text.Lazy
@@ -38,13 +38,13 @@ css = do
         color $ grayish 142
         fontStyle italic
         position absolute
-        bottom (0 :: Size Abs)
-        right (0 :: Size Abs)
+        bottom nil
+        right nil
         padding (em 0.5) (em 0.5) (em 0.5) (em 0.5)
         fontSize (em 0.75)
         background (linearGradient (angular (deg 120)) [(grayish 255,0), (grayish 242,40), (grayish 255,100)])
         opacity 0.5
-        transform $ translate3d 0 0 1
+        transform $ translate3d nil nil  1
         roundCorners
     ".books" ? div ? div ? h2 ? do
         display none
@@ -94,7 +94,7 @@ css = do
     a # hover ? do
         color blue
     ol ? do
-        padding (0 :: Size Abs) (0 :: Size Abs) (0 :: Size Abs) (0 :: Size Abs)
+        padding nil nil nil nil
         "list-style" -: "none"
     ul ? do
         paddingLeft (em 1)
@@ -109,7 +109,7 @@ css = do
 
 rotatedSection :: Int -> Css
 rotatedSection n = ".section" # nthChild (fromString $ show n) ? do
-    transforms [translate3d 0 0 1, rotateZ (deg $ 2 + fromIntegral (negate n))]
+    transforms [translate3d nil nil 1, rotateZ (deg $ 2 + fromIntegral (negate n))]
     where negate n = case n of
                  _ | mod n 2 == 0 -> n
                  otherwise -> n * (-1)
