@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i runhaskell -p "haskellPackages.ghcWithPackages(p: with p; [text clay])"
+#!nix-shell -i runhaskell -p "haskellPackages.ghcWithPackages(p: with p; [text (pkgs.haskell.lib.dontCheck clay)])"
 {-# OPTIONS_GHC -Wall #-}
 {-# LANGUAGE OverloadedStrings #-}
 import Data.Text.Lazy
@@ -58,7 +58,7 @@ css = do
         background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (white,50), (white,100)])
         roundCorners
     ".section" <> "div.sourceCode" ? do
-        boxShadow (px (-3)) (px 1) (px 15) lightBlue
+        boxShadow' (px (-3)) (px 1) (px 15) lightBlue
         display inlineBlock
         textAlign (alignSide sideLeft)
         width (pct 85)

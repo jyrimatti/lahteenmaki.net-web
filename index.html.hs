@@ -1,5 +1,5 @@
 #!/usr/bin/env nix-shell
-#!nix-shell -i runhaskell -p "haskellPackages.ghcWithPackages(p: with p; [text clay])"
+#!nix-shell -i runhaskell -p "haskellPackages.ghcWithPackages(p: with p; [text (pkgs.haskell.lib.dontCheck clay)])"
 {-# OPTIONS_GHC -Wall #-}
 {-# LANGUAGE OverloadedStrings, TupleSections, FlexibleContexts, TypeFamilies #-}
 import Data.Text.Lazy (unpack)
@@ -58,6 +58,8 @@ javastuff = box "java-stuff" $ do
         Div ? "A layer on top of JPA2 to make querying a database even more complex ;)"
 
 presentations = box "presentations" $ do
+    block "The point of birds" "https://lahteenmaki.net/dev_*19/" $
+        Div ? "About point-free style, tacit programming and combinator logic"
     block "Curse explicit recursion!" "https://lahteenmaki.net/dev_*18/" $
         Div ? "Demonstrating basics of Recursion Schemes"
     block "Optics in Programming" "https://lahteenmaki.net/dev_*16/" $
