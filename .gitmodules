@@ -31,3 +31,6 @@
 [submodule "dev_*18"]
 	path = dev_*18
 	url = ./dev_*18
+[submodule "dev_*19"]
+	path = dev_*19
+	url = ./dev_*19
