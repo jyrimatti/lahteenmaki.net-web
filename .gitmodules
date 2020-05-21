@@ -31,6 +31,9 @@
 [submodule "uitesteri"]
 	path = uitesteri
 	url = git@github.com:jyrimatti/uitesteri.git
+[submodule "rafiikka"]
+	path = rafiikka
+	url = git@github.com:jyrimatti/rafiikka.git
 [submodule "dev_*18"]
 	path = dev_*18
 	url = ./dev_*18
