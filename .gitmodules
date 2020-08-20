@@ -33,7 +33,7 @@
 	url = git@github.com:jyrimatti/uitesteri.git
 [submodule "dev_*18"]
 	path = dev_*18
-	url = ./dev_*18
+	url = git@github.com:jyrimatti/dev_*18
 [submodule "dev_*19"]
 	path = dev_*19
-	url = ./dev_*19
+	url = git@github.com:jyrimatti/dev_*19
