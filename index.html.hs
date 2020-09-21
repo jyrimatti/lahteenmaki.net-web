@@ -90,14 +90,12 @@ yhteys = box "contact" $ do
         Li ? "first-name@lahteenmaki.net"
         Li ? ahref "https://keybase.io/jyrimatti"
         Li ? do A << Href "https://pgp.mit.edu/pks/lookup?search=0x1959b8a4f22fec94&fingerprint=on" ? "F22FEC94"
-        Li ? ahref "https://plus.google.com/+Jyri-MattiLähteenmäki"
         Li ? ahref "https://twitter.com/jyrimatti"
         Li ? ahref "https://pinboard.in/u:jyrimatti/"
         Li ? ahref "https://github.com/jyrimatti"
         Li ? ahref "https://www.linkedin.com/in/jyrimatti"
         Li ? ahref "https://www.goodreads.com/jyrimatti"
         Li ? ahref "https://www.facebook.com/jyrimatti.lahteenmaki"
-        Li ? ahref "https://vimeo.com/jyrimatti"
 
 ohjelmointi = box "dev" $ do
     block "flow" $
@@ -106,9 +104,6 @@ ohjelmointi = box "dev" $ do
     block "blog" $
         Div ? do
             ahref "https://blog.lahteenmaki.net"
-    block "thoughts" $
-        Div ? do
-            A << Href "https://plus.google.com/102784575413360548836/posts" ? "google+"
     block "links" $
         Div ? do
             A << Href "https://pinboard.in/u:jyrimatti/" ? "Pinboard"
