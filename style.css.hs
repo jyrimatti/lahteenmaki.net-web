@@ -7,6 +7,7 @@ import Data.Text.Lazy
 import Prelude hiding (div)
 import Data.Monoid
 import Clay hiding (output)
+import Clay.Stylesheet (Feature(..), MediaType(..))
 
 import Control.Monad (forM_)
 import Data.String (fromString)
@@ -106,6 +107,14 @@ css = do
     iframe ? do
         width (pct 100)
         height (em 15)
+    query (MediaType "all") [ Feature "prefers-color-scheme" $ Just "dark" ] $ do
+        body ? do
+            color "#eeeeee"
+            backgroundColor "#121212"
+        ".section" ? do
+            background (linearGradient (angular (deg 30)) [(lightBlue,pct (-50)), (grayish 30,50), (grayish 142,100)])
+        "div.sourceCode" ? do
+            background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (grayish 142,50), (grayish 142,100)])
 
 rotatedSection :: Int -> Css
 rotatedSection n = ".section" # nthChild (fromString $ show n) ? do
