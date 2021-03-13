@@ -28,6 +28,9 @@
 [submodule "ping"]
 	path = ping
 	url = git@github.com:jyrimatti/ping.git
+[submodule "speed"]
+	path = speed
+	url = git@github.com:jyrimatti/speed.git
 [submodule "uitesteri"]
 	path = uitesteri
 	url = git@github.com:jyrimatti/uitesteri.git
