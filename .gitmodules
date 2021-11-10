@@ -40,3 +40,6 @@
 [submodule "dev_*19"]
 	path = dev_*19
 	url = git@github.com:jyrimatti/dev_star19
+[submodule "dev_*21"]
+	path = dev_*21
+	url = git@github.com:jyrimatti/dev_star21
