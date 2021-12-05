@@ -58,6 +58,8 @@ javastuff = box "java-stuff" $ do
         Div ? "A layer on top of JPA2 to make querying a database even more complex ;)"
 
 presentations = box "presentations" $ do
+    block "Routinely coroutining" "https://lahteenmaki.net/dev_*21/" $
+        Div ? "About coroutines and concurrent programming"
     block "The point of birds" "https://lahteenmaki.net/dev_*19/" $
         Div ? "About point-free style, tacit programming and combinator logic"
     block "Curse explicit recursion!" "https://lahteenmaki.net/dev_*18/" $
