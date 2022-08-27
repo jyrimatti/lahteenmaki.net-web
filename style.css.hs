@@ -112,7 +112,7 @@ css = do
             color "#eeeeee"
             backgroundColor "#121212"
         ".section" ? do
-            background (linearGradient (angular (deg 30)) [(lightBlue,pct (-50)), (grayish 30,50), (grayish 142,100)])
+            background (linearGradient (angular (deg 30)) [(lightBlue,pct (-80)), (grayish 30,80), (grayish 142,100)])
         "div.sourceCode" ? do
             background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (grayish 142,50), (grayish 142,100)])
 
