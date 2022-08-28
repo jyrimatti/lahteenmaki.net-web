@@ -22,7 +22,10 @@ roundCorners = borderRadius (em 0.4) (em 0.4) (em 0.4) (em 0.4)
 css :: Css
 css = do
     body ? do
+        color black
+        backgroundColor white
         position relative
+        margin (em $ -1) 0 0 0
     ".container" ? do
         marginLeft auto
         marginRight auto
@@ -107,7 +110,35 @@ css = do
     iframe ? do
         width (pct 100)
         height (em 15)
+    ".lightmode" <> ".darkmode" ? do
+        position sticky
+        float floatRight
+        top (em 1.5)
+        right (em 1.5)
+    "input.lightmode" <> "input.darkMode" ? do
+        display none
+    "label.lightmode:before" <> "label.darkmode:before" ? do
+        content $ stringContent "🌓"
+    ".lightmode:checked~.container" ? do
+        color black
+        backgroundColor white
+        ".section" ? do
+            background (linearGradient (angular (deg 30)) [(lightBlue,pct (-50)), (white,50), (white,100)])
+        "div.sourceCode" ? do
+            background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (white,50), (white,100)])
+    ".darkmode:checked~.container" ? do
+        color "#eeeeee"
+        backgroundColor "#121212"
+        ".section" ? do
+            background (linearGradient (angular (deg 30)) [(lightBlue,pct (-80)), (grayish 30,80), (grayish 142,100)])
+        "div.sourceCode" ? do
+            background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (grayish 142,50), (grayish 142,100)])
+    query (MediaType "all") [ Feature "prefers-color-scheme" $ Just "light" ] $ do
+        ".lightmode" ? do
+            display none
     query (MediaType "all") [ Feature "prefers-color-scheme" $ Just "dark" ] $ do
+        ".darkmode" ? do
+            display none
         body ? do
             color "#eeeeee"
             backgroundColor "#121212"

@@ -6,13 +6,14 @@ import Data.Text.Lazy (unpack)
 
 import Util.Markup
 import Util.HTML.HTML5
-import Util.HTML.HTML5.Attributes (Class(..))
+import Util.HTML.HTML5.Attributes (Class(..), Type(..))
 
 main = putStrLn $ unpack $ render content
 
 content :: Markup
 content = ("text/html",) $ Html ? do
     Head ? do
+        metaCharset "UTF-8"
         Title ? "Lähteenmäki.net | jyri-matti lähteenmäki"
         metaDescription "Homepage of Jyri-Matti Lähteenmäki | programmer, designer, architect, haskeller. Father and husband."
         metaKeywords ["jyri-matti lähteenmäki", "programming", "developer", "software", "computer science", "haskell", "scala"]
@@ -25,6 +26,10 @@ content = ("text/html",) $ Html ? do
         css "style.css"
         Script ? analytics
     Body << Onload "window.hl = function() { Array.prototype.slice.call(document.getElementsByClassName('section')).map(function(s) { s.className = s.className.replace('lifted', ''); }); if (location.hash == '') { document.getElementsByTagName('html')[0].className = ''; } else { document.getElementsByTagName('html')[0].className = 'highlight'; document.getElementsByClassName(location.hash.slice(1))[0].className += ' lifted'; document.body.onclick = function() { location.hash = ''; }; } }; hl();" << Onhashchange "window.hl();" ? do
+        Input << Id "lightmode" << Class "lightmode" << Type "checkbox" ? empty
+        Label << Class "lightmode" << For "lightmode" << TitleA "Switch between lightmode/darkmode" ? empty
+        Input << Id "darkmode" << Class "darkmode" << Type "checkbox" ? empty
+        Label << Class "darkmode" << For "darkmode" << TitleA "Switch between lightmode/darkmode" ? empty
         Div << Class "container" ? do
             Div << Class "header" ? do
                 H1 ? "jyri-matti lähteenmäki"

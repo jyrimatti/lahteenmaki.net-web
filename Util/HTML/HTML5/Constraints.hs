@@ -112,6 +112,9 @@ type instance LegalAttribute Meta Name = Legal
 type instance LegalAttribute Meta Content = Legal
 type instance LegalAttribute Meta Property = Legal
 
+type instance LegalAttribute Input Type = Legal
+type instance LegalAttribute Label For = Legal
+
 -- Other (unknown) elements may appear anywhere by default
 type instance LegalChild Other any = Legal
 type instance LegalChild any Other = Legal
@@ -124,6 +127,8 @@ type instance LegalChild Head Link = Legal
 type instance LegalChild Head Script = Legal
 type instance LegalChild Head Meta = Legal
 type instance LegalChild Body Div = Legal
+type instance LegalChild Body Input = Legal
+type instance LegalChild Body Label = Legal
 type instance LegalChild Div Div = Legal
 type instance LegalChild Div H1 = Legal
 type instance LegalChild Div H2 = Legal

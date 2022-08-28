@@ -108,6 +108,8 @@ newtype Name = Name String
 newtype Content = Content String
 newtype Property = Property String
 
+newtype For = For String
+
 -- Global attributes
 instance AttributeLike Id              where toAttr (Id v)              = Attribute "id" v
 instance AttributeLike Class           where toAttr (Class v)           = Attribute "class" v
@@ -128,7 +130,7 @@ instance AttributeLike Itemtype        where toAttr (Itemtype v)        = Attrib
 instance AttributeLike Lang            where toAttr (Lang v)            = Attribute "lang" v
 instance AttributeLike Spellcheck      where toAttr (Spellcheck v)      = Attribute "spellcheck" v
 instance AttributeLike Tabindex        where toAttr (Tabindex v)        = Attribute "tabindex" v
-instance AttributeLike TitleA          where toAttr (TitleA v)          = Attribute "tabindex" v
+instance AttributeLike TitleA          where toAttr (TitleA v)          = Attribute "title" v
 instance AttributeLike Translate       where toAttr (Translate v)       = Attribute "translate" v
 
 -- Global event handler attributes
@@ -208,3 +210,5 @@ instance AttributeLike Href   where toAttr (Href v)   = Attribute "href" v
 instance AttributeLike Name     where toAttr (Name v)     = Attribute "name" v
 instance AttributeLike Content  where toAttr (Content v)  = Attribute "content" v
 instance AttributeLike Property where toAttr (Property v) = Attribute "property" v
+
+instance AttributeLike For where toAttr (For v) = Attribute "for" v

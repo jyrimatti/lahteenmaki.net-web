@@ -13,6 +13,9 @@ newtype Body   = Body [Attribute]
 
 newtype Div    = Div [Attribute]
 
+newtype Input  = Input [Attribute]
+newtype Label  = Label [Attribute]
+
 newtype H1     = H1 [Attribute]
 newtype H2     = H2 [Attribute]
 newtype H3     = H3 [Attribute]
@@ -42,6 +45,9 @@ instance NodeLike Title  where val = Title   ; name _ = "title"    ; attr (Title
 instance NodeLike Body   where val = Body    ; name _ = "body"     ; attr (Body aa)    = aa
 
 instance NodeLike Div    where val = Div     ; name _ = "div"      ; attr (Div aa)     = aa
+
+instance NodeLike Input  where val = Input   ; name _ = "input"    ; attr (Input aa)   = aa
+instance NodeLike Label  where val = Label   ; name _ = "label"    ; attr (Label aa)   = aa
 
 instance NodeLike H1     where val = H1      ; name _ = "h1"       ; attr (H1 aa)      = aa
 instance NodeLike H2     where val = H2      ; name _ = "h2"       ; attr (H2 aa)      = aa

@@ -10,7 +10,8 @@ module Util.HTML.HTML5 (
     metaOGType,
     metaOGUrl,
     metaOGImage,
-    metaOGSiteName
+    metaOGSiteName,
+    metaCharset
 ) where
 import Util.HTML.HTML5.Attributes as X
 import Util.HTML.HTML5.Elements as X
@@ -33,3 +34,4 @@ metaOGType = og "type"
 metaOGUrl = og "url"
 metaOGImage = og "image"
 metaOGSiteName = og "site_name"
+metaCharset = og "charset"
