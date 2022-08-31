@@ -133,6 +133,7 @@ css = do
         ".section" ? do
             background (linearGradient (angular (deg 30)) [(lightBlue,pct (-80)), (grayish 30,80), (grayish 142,100)])
         "div.sourceCode" ? do
+            color black
             background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (grayish 142,50), (grayish 142,100)])
     query (MediaType "all") [ Feature "prefers-color-scheme" $ Just "light" ] $ do
         ".lightmode" ? do
@@ -146,6 +147,7 @@ css = do
         ".section" ? do
             background (linearGradient (angular (deg 30)) [(lightBlue,pct (-80)), (grayish 30,80), (grayish 142,100)])
         "div.sourceCode" ? do
+            color black
             background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (grayish 142,50), (grayish 142,100)])
 
 rotatedSection :: Int -> Css
