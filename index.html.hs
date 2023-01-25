@@ -40,6 +40,7 @@ content = ("text/html",) $ Html ? do
             Div << Class "section" << Class "blog" ? blog
             Div << Class "section" << Class "tweets" ? tweets
             Div << Class "section" << Class "read-books" ? books
+            Div << Class "section" << Class "railway-stuff" ? junailua
             Div << Class "section" << Class "dev" ? ohjelmointi
             Div << Class "section" << Class "famiglia" ? perhe
             Div << Class "section" << Class "contact" ? yhteys
@@ -134,6 +135,14 @@ books = box "read books" $ do
 
 blog = box "blog" $ do
     Div << HxGet "https://blog.lahteenmaki.net" << HxSelect ".posts" << HxTrigger "load" ? "loading..."
+
+junailua = box "railway stuff" $ do
+    block "Rafiikka" "https://rafiikka.lahteenmaki.net" $
+        Div ? "Experimental railway real-time graphics, work gaps, map and statistics"
+    block "Infra-API" "https://rata.digitraffic.fi/infra-api" $
+        Div ? "Finnish railway infrastructure, which I have something to do with"
+    block "Jeti-API" "https://rata.digitraffic.fi/jeti-api" $
+        Div ? "Finnish railway planned restrictions data, which I have something to do with"
 
 tamasivu = box "this site" $ do
     Ul ? do
