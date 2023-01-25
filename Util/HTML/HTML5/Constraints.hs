@@ -115,6 +115,13 @@ type instance LegalAttribute Meta Property = Legal
 type instance LegalAttribute Input Type = Legal
 type instance LegalAttribute Label For = Legal
 
+type instance LegalAttribute Div HxGet = Legal
+type instance LegalAttribute Div HxSelect = Legal
+type instance LegalAttribute Div HxTrigger = Legal
+type instance LegalAttribute Body HxExt = Legal
+
+
+
 -- Other (unknown) elements may appear anywhere by default
 type instance LegalChild Other any = Legal
 type instance LegalChild any Other = Legal

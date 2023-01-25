@@ -110,6 +110,12 @@ newtype Property = Property String
 
 newtype For = For String
 
+newtype HxGet     = HxGet String
+newtype HxSelect  = HxSelect String
+newtype HxTrigger = HxTrigger String
+newtype HxExt     = HxExt String
+
+
 -- Global attributes
 instance AttributeLike Id              where toAttr (Id v)              = Attribute "id" v
 instance AttributeLike Class           where toAttr (Class v)           = Attribute "class" v
@@ -212,3 +218,8 @@ instance AttributeLike Content  where toAttr (Content v)  = Attribute "content" 
 instance AttributeLike Property where toAttr (Property v) = Attribute "property" v
 
 instance AttributeLike For where toAttr (For v) = Attribute "for" v
+
+instance AttributeLike HxGet where toAttr (HxGet v) = Attribute "hx-get" v
+instance AttributeLike HxSelect where toAttr (HxSelect v) = Attribute "hx-select" v
+instance AttributeLike HxTrigger where toAttr (HxTrigger v) = Attribute "hx-trigger" v
+instance AttributeLike HxExt where toAttr (HxExt v) = Attribute "hx-ext" v

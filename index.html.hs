@@ -22,10 +22,12 @@ content = ("text/html",) $ Html ? do
         metaOGUrl "http://www.lahteenmaki.net"
         metaOGSiteName "Lähteenmäki.net"
         Meta << Name "viewport" << Content "width=device-width, initial-scale=1.0" ? empty
-        Script << Type "text/javascript" ? "setTimeout(function() {document.getElementById('businfo').outerHTML = 'Sovellus on käytettävissä osoitteessa: https://lahteenmaki.net/bus';}, 30000)"
+        javascript "htmx.min.js"
+        Script ? "htmx.defineExtension('swap-notitle', {handleSwap: function(swapStyle, target, fragment, settleInfo) {delete settleInfo.title;return false;}});"
+        Script ? "htmx.defineExtension('fix-relative-links', {onEvent: function(name,evt) { if (name === 'htmx:afterSwap') { evt.detail.target.querySelectorAll('a[href]').forEach(function(a) { if (!/^https?:\\/\\//i.test(a.getAttribute('href'))) { a.href = evt.detail.pathInfo.requestPath + (a.getAttribute('href').startsWith('/') ? '' : evt.detail.pathInfo.responsePath) + a.getAttribute('href');}})}}});"
         css "style.css"
         Script ? analytics
-    Body << Onload "window.hl = function() { Array.prototype.slice.call(document.getElementsByClassName('section')).map(function(s) { s.className = s.className.replace('lifted', ''); }); if (location.hash == '') { document.getElementsByTagName('html')[0].className = ''; } else { document.getElementsByTagName('html')[0].className = 'highlight'; document.getElementsByClassName(location.hash.slice(1))[0].className += ' lifted'; document.body.onclick = function() { location.hash = ''; }; } }; hl();" << Onhashchange "window.hl();" ? do
+    Body << HxExt "swap-notitle,fix-relative-links" << Onload "window.hl = function() { Array.prototype.slice.call(document.getElementsByClassName('section')).map(function(s) { s.className = s.className.replace('lifted', ''); }); if (location.hash == '') { document.getElementsByTagName('html')[0].className = ''; } else { document.getElementsByTagName('html')[0].className = 'highlight'; document.getElementsByClassName(location.hash.slice(1))[0].className += ' lifted'; document.body.onclick = function() { location.hash = ''; }; } }; hl();" << Onhashchange "window.hl();" ? do
         Input << Id "lightmode" << Class "lightmode" << Type "checkbox" ? empty
         Label << Class "lightmode" << For "lightmode" << TitleA "Switch between lightmode/darkmode" ? empty
         Input << Id "darkmode" << Class "darkmode" << Type "checkbox" ? empty
@@ -35,7 +37,7 @@ content = ("text/html",) $ Html ? do
                 H1 ? "jyri-matti lähteenmäki"
             Div << Class "section" << Class "presentations" ? presentations
             Div << Class "section" << Class "java-stuff" ? javastuff
-            Div << Class "section" << Class "bus-info" ? businfo
+            Div << Class "section" << Class "blog" ? blog
             Div << Class "section" << Class "tweets" ? tweets
             Div << Class "section" << Class "read-books" ? books
             Div << Class "section" << Class "dev" ? ohjelmointi
@@ -61,6 +63,8 @@ javastuff = box "java-stuff" $ do
         Div ? "Annotation processors to enable 1st-class-functions pre-java8"
     block "query-utils" "https://github.com/solita/query-utils" $
         Div ? "A layer on top of JPA2 to make querying a database even more complex ;)"
+    block "api-utils" "https://github.com/solita/api-utils" $
+        Div ? "Base utilities for making versatile APIs"
 
 presentations = box "presentations" $ do
     block "Routinely coroutining" "https://lahteenmaki.net/dev_*21/" $
@@ -128,8 +132,8 @@ tweets = box "tweets" $ do
 books = box "read books" $ do
     Script << Src "https://www.goodreads.com/review/custom_widget/29730596.-?cover_position=left&cover_size=small&num_books=100&order=d&shelf=read&show_author=1&show_cover=1&show_rating=0&show_review=0&show_tags=0&show_title=1&sort=date_read&widget_bg_color=FFFFFF&widget_bg_transparent=true&widget_border_width=1&widget_id=1435785230&widget_text_color=000000&widget_title_size=small&widget_width=full" ? empty
 
-businfo = box "bus info" $ do
-    IFrame << Src "/bus" << Id "businfo" ? empty
+blog = box "blog" $ do
+    Div << HxGet "https://blog.lahteenmaki.net" << HxSelect ".posts" << HxTrigger "load" ? "loading..."
 
 tamasivu = box "this site" $ do
     Ul ? do
