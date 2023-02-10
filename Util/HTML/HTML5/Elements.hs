@@ -37,6 +37,7 @@ newtype Style  = Style [Attribute]
 newtype IFrame = IFrame [Attribute]
 
 newtype Meta   = Meta [Attribute]
+newtype Object = Object [Attribute]
 
 instance NodeLike Other  where val = Other ""; name (Other n _) = n; attr (Other _ aa) = aa
 instance NodeLike Html   where val = Html    ; name _ = "html"     ; attr (Html aa)    = aa
@@ -67,6 +68,7 @@ instance NodeLike A      where val = A       ; name _ = "a"        ; attr (A aa)
 instance NodeLike Link   where val = Link    ; name _ = "link"     ; attr (Link aa)    = aa ; isVoid _ = True
 instance NodeLike Script where val = Script  ; name _ = "script"   ; attr (Script aa)  = aa
 instance NodeLike Style  where val = Style   ; name _ = "style"    ; attr (Style aa)   = aa
-instance NodeLike IFrame where val = IFrame  ; name _ = "iframe"   ; attr (IFrame aa)   = aa
+instance NodeLike IFrame where val = IFrame  ; name _ = "iframe"   ; attr (IFrame aa)  = aa
 
 instance NodeLike Meta   where val = Meta    ; name _ = "meta"     ; attr (Meta aa)    = aa ; isVoid _ = True
+instance NodeLike Object where val = Object  ; name _ = "object"   ; attr (Object aa)  = aa

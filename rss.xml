@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:template match="/rss">
+      <ul>
+       <xsl:for-each select="channel/item">
+          <li>
+            <div>
+              <xsl:variable name="target" select="link"/>
+              <a href="{$target}"><xsl:value-of select="pubDate" /></a>
+            </div>
+            <blockquote>
+              <xsl:value-of select="description" />
+            </blockquote>
+          </li>
+        </xsl:for-each>
+      </ul>
+    </xsl:template>
+  </xsl:stylesheet>

@@ -107,6 +107,9 @@ css = do
     h3 ? do
         fontStyle italic
         marginBottom (em 0.5)
+    object ? do
+        position absolute
+        left (px 9999999)
     iframe ? do
         width (pct 100)
         height (em 15)

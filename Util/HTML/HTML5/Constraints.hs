@@ -112,6 +112,9 @@ type instance LegalAttribute Meta Name = Legal
 type instance LegalAttribute Meta Content = Legal
 type instance LegalAttribute Meta Property = Legal
 
+type instance LegalAttribute Object Id = Legal
+type instance LegalAttribute Object Data_ = Legal
+
 type instance LegalAttribute Input Type = Legal
 type instance LegalAttribute Label For = Legal
 
@@ -119,6 +122,8 @@ type instance LegalAttribute Div HxGet = Legal
 type instance LegalAttribute Div HxSelect = Legal
 type instance LegalAttribute Div HxTrigger = Legal
 type instance LegalAttribute Body HxExt = Legal
+type instance LegalAttribute Div HxExt = Legal
+type instance LegalAttribute Div XsltTemplate = Legal
 
 
 
@@ -136,6 +141,7 @@ type instance LegalChild Head Meta = Legal
 type instance LegalChild Body Div = Legal
 type instance LegalChild Body Input = Legal
 type instance LegalChild Body Label = Legal
+type instance LegalChild Body Object = Legal
 type instance LegalChild Div Div = Legal
 type instance LegalChild Div H1 = Legal
 type instance LegalChild Div H2 = Legal

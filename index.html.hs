@@ -25,6 +25,7 @@ content = ("text/html",) $ Html ? do
         javascript "htmx.min.js"
         Script ? "htmx.defineExtension('swap-notitle', {handleSwap: function(swapStyle, target, fragment, settleInfo) {delete settleInfo.title;return false;}});"
         Script ? "htmx.defineExtension('fix-relative-links', {onEvent: function(name,evt) { if (name === 'htmx:afterSwap') { evt.detail.target.querySelectorAll('a[href]').forEach(function(a) { if (!/^https?:\\/\\//i.test(a.getAttribute('href'))) { a.href = evt.detail.pathInfo.requestPath + (a.getAttribute('href').startsWith('/') ? '' : evt.detail.pathInfo.responsePath) + a.getAttribute('href');}})}}});"
+        Script ? "htmx.defineExtension('client-side-templates', {transformResponse : function(text, xhr, elt) {var xsltTemplate = htmx.closest(elt, '[xslt-template]');if (xsltTemplate) {var templateId = xsltTemplate.getAttribute('xslt-template');var template = htmx.find('#' + templateId);if (template) {var content = template.innerHTML ? new DOMParser().parseFromString(template.innerHTML, 'application/xml') : template.contentDocument;var processor = new XSLTProcessor();processor.importStylesheet(content);var data = new DOMParser().parseFromString(text, 'application/xml');var frag = processor.transformToFragment(data, document);frag.querySelectorAll('blockquote').forEach(function(x) { x.innerHTML = x.innerText;});return new XMLSerializer().serializeToString(frag);} else {throw 'Unknown XSLT template: ' + templateId;}}return text;}});"
         css "style.css"
         Script ? analytics
     Body << HxExt "swap-notitle,fix-relative-links" << Onload "window.hl = function() { Array.prototype.slice.call(document.getElementsByClassName('section')).map(function(s) { s.className = s.className.replace('lifted', ''); }); if (location.hash == '') { document.getElementsByTagName('html')[0].className = ''; } else { document.getElementsByTagName('html')[0].className = 'highlight'; document.getElementsByClassName(location.hash.slice(1))[0].className += ' lifted'; document.body.onclick = function() { location.hash = ''; }; } }; hl();" << Onhashchange "window.hl();" ? do
@@ -38,6 +39,7 @@ content = ("text/html",) $ Html ? do
             Div << Class "section" << Class "presentations" ? presentations
             Div << Class "section" << Class "java-stuff" ? javastuff
             Div << Class "section" << Class "blog" ? blog
+            Div << Class "section" << Class "toots" ? toots
             Div << Class "section" << Class "tweets" ? tweets
             Div << Class "section" << Class "read-books" ? books
             Div << Class "section" << Class "railway-stuff" ? junailua
@@ -46,6 +48,7 @@ content = ("text/html",) $ Html ? do
             Div << Class "section" << Class "contact" ? yhteys
             Div << Class "section" << Class "this-site" ? tamasivu
             Div << Class "footer" ? "© Jyri-Matti Lähteenmäki 2016"
+        Object << Id "template" << Data_ "rss.xml" ? empty
 
 box name body = do
     H2 ? do
@@ -126,6 +129,9 @@ ohjelmointi = box "dev" $ do
   where block title body = Div << Class "subsection" ? do
                                H3 ? title
                                body
+
+toots = box "toots" $ do
+    Div << HxGet "https://mastodon.online/@jyrimatti.rss" << HxTrigger "load" << HxExt "client-side-templates" << XsltTemplate "template" ? "loading..."
 
 tweets = box "tweets" $ do
     A << Class "twitter-timeline" << Href "https://twitter.com/jyrimatti" << Data "widget-id" "331834452940570626" << Data "chrome" "noheader nofooter transparent noborders" ? "Tweets by @jyrimatti"

@@ -88,6 +88,7 @@ newtype Onsuspend = Onsuspend String
 newtype Ontimeupdate = Ontimeupdate String
 newtype Onvolumechange = Onvolumechange String
 newtype Onwaiting = Onwaiting String
+newtype Data_ = Data_ String
 
 data Data = Data String String
 
@@ -114,6 +115,7 @@ newtype HxGet     = HxGet String
 newtype HxSelect  = HxSelect String
 newtype HxTrigger = HxTrigger String
 newtype HxExt     = HxExt String
+newtype XsltTemplate = XsltTemplate String
 
 
 -- Global attributes
@@ -216,6 +218,7 @@ instance AttributeLike Href   where toAttr (Href v)   = Attribute "href" v
 instance AttributeLike Name     where toAttr (Name v)     = Attribute "name" v
 instance AttributeLike Content  where toAttr (Content v)  = Attribute "content" v
 instance AttributeLike Property where toAttr (Property v) = Attribute "property" v
+instance AttributeLike Data_ where toAttr (Data_ v) = Attribute "data" v
 
 instance AttributeLike For where toAttr (For v) = Attribute "for" v
 
@@ -223,3 +226,4 @@ instance AttributeLike HxGet where toAttr (HxGet v) = Attribute "hx-get" v
 instance AttributeLike HxSelect where toAttr (HxSelect v) = Attribute "hx-select" v
 instance AttributeLike HxTrigger where toAttr (HxTrigger v) = Attribute "hx-trigger" v
 instance AttributeLike HxExt where toAttr (HxExt v) = Attribute "hx-ext" v
+instance AttributeLike XsltTemplate where toAttr (XsltTemplate v) = Attribute "xslt-template" v
