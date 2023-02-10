@@ -102,6 +102,7 @@ yhteys = box "contact" $ do
         Li ? "first-name@lahteenmaki.net"
         Li ? ahref "https://keybase.io/jyrimatti"
         Li ? do A << Href "https://pgp.mit.edu/pks/lookup?search=0x1959b8a4f22fec94&fingerprint=on" ? "F22FEC94"
+        Li ? "Mastodon: @jyrimatti@lahteenmaki.net"
         Li ? ahref "https://twitter.com/jyrimatti"
         Li ? ahref "https://pinboard.in/u:jyrimatti/"
         Li ? ahref "https://github.com/jyrimatti"
