@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+    <xsl:template match="/rss">
+      <ul>
+       <xsl:for-each select="channel/item">
+          <li>
+            <div>
+              <xsl:variable name="target" select="link"/>
+              <span _="on load make a Date from my innerText then call it.toISOString().substring(0, 10) then set my innerText to it"><xsl:value-of select="pubDate" /></span>
+              <xsl:value-of select="' '" />
+              <a href="{$target}"><xsl:value-of select="title" /></a> (by <xsl:value-of select="author_name" />)
+            </div>
+            <xsl:variable name="image" select="book_medium_image_url"/>
+            <xsl:variable name="title" select="title"/>
+            <img src="{$image}" alt="{$title}" style="float: left; margin: 1em 1em 0 0;" />
+            <blockquote>
+              <xsl:value-of select="book_description" />
+            </blockquote>
+          </li>
+        </xsl:for-each>
+      </ul>
+    </xsl:template>
+  </xsl:stylesheet>

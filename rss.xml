@@ -6,7 +6,7 @@
           <li>
             <div>
               <xsl:variable name="target" select="link"/>
-              <a href="{$target}"><xsl:value-of select="pubDate" /></a>
+              <a href="{$target}" _="on load make a Date from my innerText then call it.toUTCString() then set my innerText to it"><xsl:value-of select="pubDate" /></a>
             </div>
             <blockquote>
               <xsl:value-of select="description" />

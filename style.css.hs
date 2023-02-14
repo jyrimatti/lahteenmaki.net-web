@@ -104,6 +104,7 @@ css = do
         paddingLeft (em 1)
     li ? do
         padding (em 0.2) 0 (em 0.2) 0
+        clear both
     h3 ? do
         fontStyle italic
         marginBottom (em 0.5)

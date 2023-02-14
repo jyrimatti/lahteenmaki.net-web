@@ -88,7 +88,9 @@ newtype Onsuspend = Onsuspend String
 newtype Ontimeupdate = Ontimeupdate String
 newtype Onvolumechange = Onvolumechange String
 newtype Onwaiting = Onwaiting String
+
 newtype Data_ = Data_ String
+newtype As = As String
 
 data Data = Data String String
 
@@ -114,9 +116,10 @@ newtype For = For String
 newtype HxGet     = HxGet String
 newtype HxSelect  = HxSelect String
 newtype HxTrigger = HxTrigger String
+newtype HxSwap    = HxSwap String
 newtype HxExt     = HxExt String
 newtype XsltTemplate = XsltTemplate String
-
+newtype Script_ = Script_ String
 
 -- Global attributes
 instance AttributeLike Id              where toAttr (Id v)              = Attribute "id" v
@@ -205,6 +208,8 @@ instance AttributeLike Onwaiting where toAttr (Onwaiting v)   = Attribute "onwai
 
 instance AttributeLike Data   where toAttr (Data n v)   = Attribute ("data-" ++ n) v
 
+instance AttributeLike As   where toAttr (As v)   = Attribute "as" v
+
 -- aria
 instance AttributeLike Role   where toAttr (Role v)   = Attribute "role" v
 instance AttributeLike Aria   where toAttr (AriaS n v) = Attribute ("aria-" ++ n) v
@@ -225,5 +230,7 @@ instance AttributeLike For where toAttr (For v) = Attribute "for" v
 instance AttributeLike HxGet where toAttr (HxGet v) = Attribute "hx-get" v
 instance AttributeLike HxSelect where toAttr (HxSelect v) = Attribute "hx-select" v
 instance AttributeLike HxTrigger where toAttr (HxTrigger v) = Attribute "hx-trigger" v
+instance AttributeLike HxSwap where toAttr (HxSwap v) = Attribute "hx-swap" v
 instance AttributeLike HxExt where toAttr (HxExt v) = Attribute "hx-ext" v
 instance AttributeLike XsltTemplate where toAttr (XsltTemplate v) = Attribute "xslt-template" v
+instance AttributeLike Script_ where toAttr (Script_ v) = Attribute "script" v

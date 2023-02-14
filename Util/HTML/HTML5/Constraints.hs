@@ -96,6 +96,11 @@ type instance LegalAttribute any Onwaiting = Legal
 
 type instance LegalAttribute any Data = Legal
 
+type instance LegalAttribute Link As = Legal
+type instance LegalAttribute Link Type = Legal
+type instance LegalAttribute Link Href = Legal
+type instance LegalAttribute Link Rel = Legal
+
 -- aria
 type instance LegalAttribute any Role = Legal
 type instance LegalAttribute any Aria = Legal
@@ -118,12 +123,13 @@ type instance LegalAttribute Object Data_ = Legal
 type instance LegalAttribute Input Type = Legal
 type instance LegalAttribute Label For = Legal
 
-type instance LegalAttribute Div HxGet = Legal
-type instance LegalAttribute Div HxSelect = Legal
-type instance LegalAttribute Div HxTrigger = Legal
-type instance LegalAttribute Body HxExt = Legal
-type instance LegalAttribute Div HxExt = Legal
-type instance LegalAttribute Div XsltTemplate = Legal
+type instance LegalAttribute any HxGet = Legal
+type instance LegalAttribute any HxSelect = Legal
+type instance LegalAttribute any HxTrigger = Legal
+type instance LegalAttribute any HxSwap = Legal
+type instance LegalAttribute any HxExt = Legal
+type instance LegalAttribute any XsltTemplate = Legal
+type instance LegalAttribute any Script_ = Legal
 
 
 
