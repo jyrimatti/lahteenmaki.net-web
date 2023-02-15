@@ -110,7 +110,9 @@ css = do
         marginBottom (em 0.5)
     object ? do
         position absolute
-        left (px 9999999)
+        bottom (px 0)
+        width (px 0)
+        height (px 0)
     iframe ? do
         width (pct 100)
         height (em 15)
