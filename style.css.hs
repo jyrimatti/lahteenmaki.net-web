@@ -2,7 +2,7 @@
 #!nix-shell -i runhaskell -p "haskellPackages.ghcWithPackages(p: with p; [text (pkgs.haskell.lib.dontCheck clay)])"
 {-# OPTIONS_GHC -Wall #-}
 {-# LANGUAGE OverloadedStrings #-}
-import Data.Text.Lazy
+import Data.Text.Lazy hiding (center)
 
 import Prelude hiding (div)
 import Data.Monoid
@@ -27,17 +27,18 @@ css = do
         position relative
         margin (em $ -1) 0 0 0
     ".container" ? do
-        marginLeft auto
-        marginRight auto
         textAlign (alignSide sideCenter)
-    ".header" ? do
-        textShadow 0 0 (px 50) lightBlue
-        color lightGray
-        padding (em 0.1) (em 0.1) (em 0.1) (em 0.1)
+        display flex
+        flexDirection column
     ".header" <> ".section" ? do
         margin (em 1) (em 1) (em 1) (em 1)
         roundCorners
         fontFamily ["cursive"] []
+    ".header" ? do
+        textShadow 0 0 (px 50) lightBlue
+        color lightGray
+        padding (em 0.1) (em 0.1) (em 0.1) (em 0.1)
+        marginBottom (px 0)
     ".footer" ? do
         color $ grayish 142
         fontStyle italic
@@ -57,15 +58,18 @@ css = do
         overflow scroll
     ".section" ? do
         background (linearGradient (angular (deg 30)) [(lightBlue,pct (-50)), (white,50), (white,100)])
-        maxWidth (em 25)        
+        maxWidth (em 25)
+        overflow hidden
+        display inlineFlex
+        flexDirection column
     "div.sourceCode" ? do
         background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (white,50), (white,100)])
         roundCorners
+        display inlineBlock
     ".section" <> "div.sourceCode" ? do
         boxShadow' (px (-3)) (px 1) (px 15) lightBlue
-        display inlineBlock
         textAlign (alignSide sideLeft)
-        width (pct 85)
+        width (pct 95)
         h2 ? do
             color lightGray
             let pad = (em 0.6)
@@ -78,17 +82,18 @@ css = do
             padding (em 1) (em 1) (em 1) (em 1)
     forM_ [0..9] rotatedSection
     ".highlight" ? do
-        backgroundColor "#222"
+        ".container" ? do
+            height (pct 100)
+            alignItems center
+        ".content" ? do
+            display flex
+            overflow hidden
         ".section" ? do
-            opacity 0.15
+            display none
         ".section.lifted" ? do
-            opacity 1.0
-            position fixed
-            zIndex 999
-            marginRight auto
-            top (px 90)
-            left (pct 50)
-            marginLeft (px (-210))
+            display inlineFlex
+        ".boxcontent" ? do
+            maxHeight inherit
     ".subsection" ? a ? do
         paddingLeft (em 0.5)
     a ? do
@@ -157,7 +162,7 @@ css = do
             background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (grayish 142,50), (grayish 142,100)])
 
 rotatedSection :: Int -> Css
-rotatedSection n = ".section" # nthChild (fromString $ show n) ? do
+rotatedSection n = "html:not(.highlight) .section" # nthChild (fromString $ show n) ? do
     transforms [translate3d nil nil 1, rotateZ (deg $ 2 + fromIntegral (negate n))]
     where negate n = case n of
                  _ | mod n 2 == 0 -> n

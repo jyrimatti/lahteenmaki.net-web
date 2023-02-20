@@ -24,12 +24,16 @@ content = ("text/html",) $ Html ? do
         Meta << Name "viewport" << Content "width=device-width, initial-scale=1.0" ? empty
         javascript "htmx.min.js"
         javascript "_hyperscript.min.js"
+        javascript "swipe-listener.min.js"
         Script ? "htmx.defineExtension('swap-notitle', {handleSwap: function(swapStyle, target, fragment, settleInfo) {delete settleInfo.title;return false;}});"
         Script ? "htmx.defineExtension('fix-relative-links', {onEvent: function(name,evt) { if (name === 'htmx:afterSwap') { evt.detail.target.querySelectorAll('a[href]').forEach(function(a) { if (!/^https?:\\/\\//i.test(a.getAttribute('href'))) { a.href = evt.detail.pathInfo.requestPath + (a.getAttribute('href').startsWith('/') ? '' : evt.detail.pathInfo.responsePath) + a.getAttribute('href');}})}}});"
         Script ? "htmx.defineExtension('client-side-templates', {transformResponse : function(text, xhr, elt) {var xsltTemplate = htmx.closest(elt, '[xslt-template]');if (xsltTemplate) {var templateId = xsltTemplate.getAttribute('xslt-template');var template = htmx.find('#' + templateId);if (template) {var content = template.innerHTML ? new DOMParser().parseFromString(template.innerHTML, 'application/xml') : template.contentDocument;var processor = new XSLTProcessor();processor.importStylesheet(content);var data = new DOMParser().parseFromString(text, 'application/xml');var frag = processor.transformToFragment(data, document);return new XMLSerializer().serializeToString(frag);} else {throw 'Unknown XSLT template: ' + templateId;}}return text;}});"
+        Script ? "window.addEventListener('load', function() { document.querySelectorAll('.section h2').forEach(function (x) {SwipeListener(x);var act = function(cur, other) {if ((other || document.body).classList.contains('section')) {window.location.hash = other.querySelector('a').getAttribute('href');}};x.addEventListener('swipe', function (e) {if (e.target.parentNode.classList.contains('lifted')) {if (e.detail.directions.right) {act(e.target.parentNode, e.target.parentNode.previousSibling);}if (e.detail.directions.left) {act(e.target.parentNode, e.target.parentNode.nextSibling);}}});});});"
+        Script ? "window.addEventListener('load', function() { window.hl = function() { Array.prototype.slice.call(document.getElementsByClassName('section')).map(function(s) { s.className = s.className.replace('lifted', ''); }); if (location.hash == '') { document.getElementsByTagName('html')[0].className = ''; } else { document.getElementsByTagName('html')[0].className = 'highlight'; document.getElementsByClassName(location.hash.slice(1))[0].className += ' lifted'; } }; hl(); });"
+        Script ? "window.addEventListener('load', function() { document.body.addEventListener('click', function(event) { if (event.target.classList.contains('container') || event.target.getAttribute('href') == window.location.hash) { window.location.hash = ''; event.preventDefault(); return false; } }); });"
         css "style.css"
         Script ? analytics
-    Body << HxExt "swap-notitle,fix-relative-links" << Onload "window.hl = function() { Array.prototype.slice.call(document.getElementsByClassName('section')).map(function(s) { s.className = s.className.replace('lifted', ''); }); if (location.hash == '') { document.getElementsByTagName('html')[0].className = ''; } else { document.getElementsByTagName('html')[0].className = 'highlight'; document.getElementsByClassName(location.hash.slice(1))[0].className += ' lifted'; document.body.onclick = function() { location.hash = ''; }; } }; hl();" << Onhashchange "window.hl();" ? do
+    Body << HxExt "swap-notitle,fix-relative-links" << Onhashchange "window.hl();" ? do
         Object << Onload "this.loaded=true" << Id "template" << Data_ "rss.xml" ? empty
         Object << Onload "this.loaded=true" << Id "template2" << Data_ "goodreads.xml" ? empty
         Input << Id "lightmode" << Class "lightmode" << Type "checkbox" ? empty
@@ -39,18 +43,19 @@ content = ("text/html",) $ Html ? do
         Div << Class "container" ? do
             Div << Class "header" ? do
                 H1 ? "jyri-matti lähteenmäki"
-            Div << Class "section" << Class "presentations" ? presentations
-            Div << Class "section" << Class "java-stuff" ? javastuff
-            Div << Class "section" << Class "blog" ? blog
-            Div << Class "section" << Class "toots" ? toots
-            Div << Class "section" << Class "tweets" ? tweets
-            Div << Class "section" << Class "read-books" ? books
-            Div << Class "section" << Class "railway-stuff" ? junailua
-            Div << Class "section" << Class "dev" ? ohjelmointi
-            Div << Class "section" << Class "famiglia" ? perhe
-            Div << Class "section" << Class "contact" ? yhteys
-            Div << Class "section" << Class "this-site" ? tamasivu
-            Div << Class "footer" ? "© Jyri-Matti Lähteenmäki 2016"
+            Div << Class "content" ? do
+                Div << Class "section" << Class "presentations" ? presentations
+                Div << Class "section" << Class "java-stuff" ? javastuff
+                Div << Class "section" << Class "blog" ? blog
+                Div << Class "section" << Class "toots" ? toots
+                Div << Class "section" << Class "tweets" ? tweets
+                Div << Class "section" << Class "read-books" ? books
+                Div << Class "section" << Class "railway-stuff" ? junailua
+                Div << Class "section" << Class "dev" ? ohjelmointi
+                Div << Class "section" << Class "famiglia" ? perhe
+                Div << Class "section" << Class "contact" ? yhteys
+                Div << Class "section" << Class "this-site" ? tamasivu
+                Div << Class "footer" ? "© Jyri-Matti Lähteenmäki 2023"
 
 box name body = do
     H2 ? do
@@ -146,7 +151,6 @@ tweets = box "tweets" $ do
     Script ? raw "!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+\"://platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");"
 
 books = box "read books" $ do
-  --Script << Src "https://www.goodreads.com/review/custom_widget/29730596.-?cover_position=left&cover_size=small&num_books=100&order=d&shelf=read&show_author=1&show_cover=1&show_rating=0&show_review=0&show_tags=0&show_title=1&sort=date_read&widget_bg_color=FFFFFF&widget_bg_transparent=true&widget_border_width=1&widget_id=1435785230&widget_text_color=000000&widget_title_size=small&widget_width=full" ? empty
   Div << Script_ "on htmx:afterSwap repeat in (<blockquote /> in me) set its innerHTML to its innerText" ? do
     Div << HxGet "/goodreads/29730596?shelf=read"
         << HxExt "client-side-templates"
