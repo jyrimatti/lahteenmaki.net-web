@@ -121,6 +121,8 @@ type instance LegalAttribute Object Id = Legal
 type instance LegalAttribute Object Data_ = Legal
 
 type instance LegalAttribute Input Type = Legal
+type instance LegalAttribute Input Name = Legal
+type instance LegalAttribute Input Checked = Legal
 type instance LegalAttribute Label For = Legal
 
 type instance LegalAttribute any HxGet = Legal
@@ -153,6 +155,7 @@ type instance LegalChild Div H1 = Legal
 type instance LegalChild Div H2 = Legal
 type instance LegalChild Div H3 = Legal
 type instance LegalChild Div A = Legal
+type instance LegalChild Div Input = Legal
 type instance LegalChild Div Script = Legal
 type instance LegalChild Script String = Legal
 type instance LegalChild H2 A = Legal

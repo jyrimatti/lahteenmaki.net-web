@@ -66,7 +66,7 @@ showAttributes = (foldl joinWithSpace "") . (map show) . (concatMap joinValues) 
           joinValues (Attribute k v1 : xs) = [Attribute k $ foldl joinWithSpace v1 $ map value xs]
 
 render :: Markup -> DT.Text
-render (_,markup) = DT.pack $ concatMap show $ map (\(Child n) -> n) $ execWriter markup
+render (_,markup) = DT.pack $ ("<!DOCTYPE html>" <>) $ concatMap show $ map (\(Child n) -> n) $ execWriter markup
 
 escapeAttributeContent :: String -> String
 escapeAttributeContent = concatMap f

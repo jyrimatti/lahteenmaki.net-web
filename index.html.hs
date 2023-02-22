@@ -11,7 +11,7 @@ import Util.HTML.HTML5.Attributes (Class(..), Type(..))
 main = putStrLn $ unpack $ render content
 
 content :: Markup
-content = ("text/html",) $ Html ? do
+content = ("text/html",) $ Html << Lang "en" ? do
     Head ? do
         metaCharset "UTF-8"
         Title ? "Lähteenmäki.net | jyri-matti lähteenmäki"
@@ -21,16 +21,22 @@ content = ("text/html",) $ Html ? do
         metaOGType "website"
         metaOGUrl "http://www.lahteenmaki.net"
         metaOGSiteName "Lähteenmäki.net"
+        Meta << Name "apple-mobile-web-app-title" << Content "lähteenmäki.net" ? empty
+        Meta << Name "application-name" << Content "lähteenmäki.net" ? empty
+        Meta << Name "apple-mobile-web-app-capable" << Content "yes" ? empty
+        Meta << Name "mobile-web-app-capable" << Content "yes" ? empty
         Meta << Name "viewport" << Content "width=device-width, initial-scale=1.0" ? empty
         javascript "htmx.min.js"
         javascript "_hyperscript.min.js"
         javascript "swipe-listener.min.js"
+        raw "<script>if (window.innerWidth <= 850) { if (window.location.hash == '') { window.location.hash = 'presentations'; } }</script>"
         Script ? "htmx.defineExtension('swap-notitle', {handleSwap: function(swapStyle, target, fragment, settleInfo) {delete settleInfo.title;return false;}});"
         Script ? "htmx.defineExtension('fix-relative-links', {onEvent: function(name,evt) { if (name === 'htmx:afterSwap') { evt.detail.target.querySelectorAll('a[href]').forEach(function(a) { if (!/^https?:\\/\\//i.test(a.getAttribute('href'))) { a.href = evt.detail.pathInfo.requestPath + (a.getAttribute('href').startsWith('/') ? '' : evt.detail.pathInfo.responsePath) + a.getAttribute('href');}})}}});"
         Script ? "htmx.defineExtension('client-side-templates', {transformResponse : function(text, xhr, elt) {var xsltTemplate = htmx.closest(elt, '[xslt-template]');if (xsltTemplate) {var templateId = xsltTemplate.getAttribute('xslt-template');var template = htmx.find('#' + templateId);if (template) {var content = template.innerHTML ? new DOMParser().parseFromString(template.innerHTML, 'application/xml') : template.contentDocument;var processor = new XSLTProcessor();processor.importStylesheet(content);var data = new DOMParser().parseFromString(text, 'application/xml');var frag = processor.transformToFragment(data, document);return new XMLSerializer().serializeToString(frag);} else {throw 'Unknown XSLT template: ' + templateId;}}return text;}});"
-        Script ? "window.addEventListener('load', function() { document.querySelectorAll('.section h2').forEach(function (x) {SwipeListener(x);var act = function(cur, other) {if ((other || document.body).classList.contains('section')) {window.location.hash = other.querySelector('a').getAttribute('href');}};x.addEventListener('swipe', function (e) {if (e.target.parentNode.classList.contains('lifted')) {if (e.detail.directions.right) {act(e.target.parentNode, e.target.parentNode.previousSibling);}if (e.detail.directions.left) {act(e.target.parentNode, e.target.parentNode.nextSibling);}}});});});"
-        Script ? "window.addEventListener('load', function() { window.hl = function() { Array.prototype.slice.call(document.getElementsByClassName('section')).map(function(s) { s.className = s.className.replace('lifted', ''); }); if (location.hash == '') { document.getElementsByTagName('html')[0].className = ''; } else { document.getElementsByTagName('html')[0].className = 'highlight'; document.getElementsByClassName(location.hash.slice(1))[0].className += ' lifted'; } }; hl(); });"
+        Script ? "window.addEventListener('load', function() { document.querySelectorAll('.section h2').forEach(function (x) {SwipeListener(x);var act = function(cur, other) {setTimeout(function() {document.querySelectorAll('.content').forEach(function(x) {x.classList.remove('animateLeft');x.classList.remove('animateRight');});  if ((other || document.body).classList.contains('section-wrapper')) {window.location.hash = other.querySelector('a').getAttribute('href');} }, 500);};x.addEventListener('swipe', function (e) {if (document.documentElement.classList.contains('highlight')) {if (e.detail.directions.right) {document.querySelector('.content').classList.add('animateRight'); act(e.target.parentNode, e.target.closest('.section-wrapper').previousSibling);}if (e.detail.directions.left) {document.querySelector('.content').classList.add('animateLeft'); act(e.target.parentNode, e.target.closest('.section-wrapper').nextSibling);}}});});});"
+        Script ? "window.addEventListener('load', function() { window.hl = function() { Array.prototype.slice.call(document.getElementsByClassName('carousel')).map(function(s) {s.checked = false;}); if (location.hash == '') { document.getElementsByTagName('html')[0].className = ''; } else { document.getElementsByTagName('html')[0].className = 'highlight'; document.getElementsByClassName(location.hash.slice(1))[0].previousSibling.checked = true; } }; hl(); });"
         Script ? "window.addEventListener('load', function() { document.body.addEventListener('click', function(event) { if (event.target.classList.contains('container') || event.target.getAttribute('href') == window.location.hash) { window.location.hash = ''; event.preventDefault(); return false; } }); });"
+        Script ? "window.addEventListener('load', function() { document.querySelectorAll('.carousel').forEach(function(x) {x.addEventListener('click', function(event) { window.location.hash = event.target.parentElement.querySelector('a').getAttribute('href'); });} )});"
         css "style.css"
         Script ? analytics
     Body << HxExt "swap-notitle,fix-relative-links" << Onhashchange "window.hl();" ? do
@@ -44,18 +50,23 @@ content = ("text/html",) $ Html ? do
             Div << Class "header" ? do
                 H1 ? "jyri-matti lähteenmäki"
             Div << Class "content" ? do
-                Div << Class "section" << Class "presentations" ? presentations
-                Div << Class "section" << Class "java-stuff" ? javastuff
-                Div << Class "section" << Class "blog" ? blog
-                Div << Class "section" << Class "toots" ? toots
-                Div << Class "section" << Class "tweets" ? tweets
-                Div << Class "section" << Class "read-books" ? books
-                Div << Class "section" << Class "railway-stuff" ? junailua
-                Div << Class "section" << Class "dev" ? ohjelmointi
-                Div << Class "section" << Class "famiglia" ? perhe
-                Div << Class "section" << Class "contact" ? yhteys
-                Div << Class "section" << Class "this-site" ? tamasivu
+                section "presentations" presentations True
+                section "java-stuff" javastuff False
+                section "blog" blog False
+                section "toots" toots False
+                section "tweets" tweets False
+                section "read-books" books False
+                section "railway-stuff" junailua False
+                section "dev" ohjelmointi False
+                section "famiglia" perhe False
+                section "contact" yhteys False
+                section "this-site" tamasivu False
                 Div << Class "footer" ? "© Jyri-Matti Lähteenmäki 2023"
+
+section name body checked = do
+    Div << Class "section-wrapper" ? do
+        Input << Type "radio" << Class "carousel" << Name "carousel" << Checked checked ? empty
+        Div << Class "section" << Class name ? body 
 
 box name body = do
     H2 ? do

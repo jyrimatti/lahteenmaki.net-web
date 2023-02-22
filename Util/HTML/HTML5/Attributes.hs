@@ -108,6 +108,7 @@ newtype Rel = Rel String
 newtype Href = Href String
 
 newtype Name = Name String
+newtype Checked = Checked Bool
 newtype Content = Content String
 newtype Property = Property String
 
@@ -221,6 +222,7 @@ instance AttributeLike Rel    where toAttr (Rel v)    = Attribute "rel" v
 instance AttributeLike Href   where toAttr (Href v)   = Attribute "href" v
 
 instance AttributeLike Name     where toAttr (Name v)     = Attribute "name" v
+instance AttributeLike Checked  where toAttr (Checked v)  = Attribute (if v then "checked" else "") "checked"
 instance AttributeLike Content  where toAttr (Content v)  = Attribute "content" v
 instance AttributeLike Property where toAttr (Property v) = Attribute "property" v
 instance AttributeLike Data_ where toAttr (Data_ v) = Attribute "data" v

@@ -21,6 +21,8 @@ roundCorners = borderRadius (em 0.4) (em 0.4) (em 0.4) (em 0.4)
 
 css :: Css
 css = do
+    html ? do
+        backgroundColor white
     body ? do
         color black
         backgroundColor white
@@ -30,6 +32,10 @@ css = do
         textAlign (alignSide sideCenter)
         display flex
         flexDirection column
+    ".content" ? do
+        maxWidth (pct 100)
+    ".carousel" ? do
+        display none
     ".header" <> ".section" ? do
         margin (em 1) (em 1) (em 1) (em 1)
         roundCorners
@@ -56,6 +62,9 @@ css = do
     ".boxcontent" ? do
         maxHeight (px 350)
         overflow scroll
+    ".section-wrapper" ? do
+        display inlineBlock
+        overflow hidden
     ".section" ? do
         background (linearGradient (angular (deg 30)) [(lightBlue,pct (-50)), (white,50), (white,100)])
         maxWidth (em 25)
@@ -69,7 +78,6 @@ css = do
     ".section" <> "div.sourceCode" ? do
         boxShadow' (px (-3)) (px 1) (px 15) lightBlue
         textAlign (alignSide sideLeft)
-        width (pct 95)
         h2 ? do
             color lightGray
             let pad = (em 0.6)
@@ -83,15 +91,47 @@ css = do
     forM_ [0..9] rotatedSection
     ".highlight" ? do
         ".container" ? do
-            height (pct 100)
+            height (vh 100)
             alignItems center
         ".content" ? do
             display flex
             overflow hidden
+        ".section-wrapper" ? do
+            display flex
+            flexDirection column
         ".section" ? do
             display none
-        ".section.lifted" ? do
+            marginBottom (em 4.5)
+        ".carousel" ? do
+            width (em 1)
+            position absolute
+            bottom (em 3)
+            marginLeft (pct 50)
+            display inline
+        ".carousel:checked ~ .section" ? do
             display inlineFlex
+        ".section-wrapper:nth-child(1) .carousel" ? do
+            left (em (-9.0))
+        ".section-wrapper:nth-child(2) .carousel" ? do
+            left (em (-7.5))
+        ".section-wrapper:nth-child(3) .carousel" ? do
+            left (em (-6))
+        ".section-wrapper:nth-child(4) .carousel" ? do
+            left (em (-4.5))
+        ".section-wrapper:nth-child(5) .carousel" ? do
+            left (em (-3.0))
+        ".section-wrapper:nth-child(6) .carousel" ? do
+            left (em (-1.5))
+        ".section-wrapper:nth-child(7) .carousel" ? do
+            left (em 0)
+        ".section-wrapper:nth-child(8) .carousel" ? do
+            left (em 1.5)
+        ".section-wrapper:nth-child(9) .carousel" ? do
+            left (em 3.0)
+        ".section-wrapper:nth-child(10) .carousel" ? do
+            left (em 4.5)
+        ".section-wrapper:nth-child(11) .carousel" ? do
+            left (em 6.0)
         ".boxcontent" ? do
             maxHeight inherit
     ".subsection" ? a ? do
@@ -121,6 +161,18 @@ css = do
     iframe ? do
         width (pct 100)
         height (em 15)
+    ".animateLeft" ? do
+        animationName "slideLeft"
+        animationDuration (sec 0.5)
+        animationFillMode forwards
+        transitionTimingFunction easeOut
+    ".animateRight" ? do
+        animationName "slideRight"
+        animationDuration (sec 0.5)
+        animationFillMode forwards
+        transitionTimingFunction easeOut
+    keyframes "slideLeft" [(100,marginLeft (pct (-200)))]
+    keyframes "slideRight" [(100,marginRight (pct (-200)))]
     ".lightmode" <> ".darkmode" ? do
         position sticky
         float floatRight
@@ -152,6 +204,8 @@ css = do
     query (MediaType "all") [ Feature "prefers-color-scheme" $ Just "dark" ] $ do
         ".darkmode" ? do
             display none
+        html ? do
+            backgroundColor "#121212"
         body ? do
             color "#eeeeee"
             backgroundColor "#121212"
@@ -162,7 +216,7 @@ css = do
             background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (grayish 142,50), (grayish 142,100)])
 
 rotatedSection :: Int -> Css
-rotatedSection n = "html:not(.highlight) .section" # nthChild (fromString $ show n) ? do
+rotatedSection n = "html:not(.highlight) .section-wrapper" # nthChild (fromString $ show n) ? do
     transforms [translate3d nil nil 1, rotateZ (deg $ 2 + fromIntegral (negate n))]
     where negate n = case n of
                  _ | mod n 2 == 0 -> n
