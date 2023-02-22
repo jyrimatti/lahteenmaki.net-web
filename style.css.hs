@@ -161,18 +161,29 @@ css = do
     iframe ? do
         width (pct 100)
         height (em 15)
-    ".animateLeft" ? do
-        animationName "slideLeft"
+    ".animate" ? do
         animationDuration (sec 0.5)
         animationFillMode forwards
+    ".animateLeft" ? do
+        animationName "slideLeft"
         transitionTimingFunction easeOut
     ".animateRight" ? do
         animationName "slideRight"
-        animationDuration (sec 0.5)
-        animationFillMode forwards
         transitionTimingFunction easeOut
-    keyframes "slideLeft" [(100,marginLeft (pct (-200)))]
-    keyframes "slideRight" [(100,marginRight (pct (-200)))]
+    ".animateFromLeft" ? do
+        animationName "slideFromLeft"
+        transitionTimingFunction easeIn
+        ".section" ? do
+            display inlineFlex
+    ".animateFromRight" ? do
+        animationName "slideFromRight"
+        transitionTimingFunction easeIn
+        ".section" ? do
+            display inlineFlex
+    keyframes "slideLeft" [(0,marginLeft (pct 0)), (100,marginLeft (pct (-150)))]
+    keyframes "slideRight" [(0,marginLeft (pct 0) <> marginRight (pct 0)), (100,marginLeft (pct 150) <> marginRight (pct (-150)))]
+    keyframes "slideFromLeft" [(0,marginLeft (pct (-150))), (100,marginLeft (pct 0))]
+    keyframes "slideFromRight" [(0,marginLeft (pct 150) <> marginRight (pct (-150))), (100,marginLeft (pct 0) <> marginRight (pct 0))]
     ".lightmode" <> ".darkmode" ? do
         position sticky
         float floatRight
