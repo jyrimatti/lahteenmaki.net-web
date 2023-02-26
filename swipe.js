@@ -1,10 +1,11 @@
+var swipeContainerClass = 'section-wrapper';
 window.addEventListener('load', function () {
-    document.querySelectorAll('.section-wrapper').forEach(function (x) {
+    document.querySelectorAll('.' + swipeContainerClass).forEach(function (x) {
         SwipeListener(x);
         var act = function (cur, other, otherClass) {
-            if (other && other.classList.contains('section-wrapper')) {
+            if (other && other.classList.contains(swipeContainerClass)) {
                 setTimeout(function () {
-                    window.location.hash = other.querySelector('a').getAttribute('href');
+                    other.querySelector('a').click();
                     cur.classList.remove('animate', 'animateLeft', 'animateRight');
                     other.classList.add('animate', otherClass);
                 }, 500);
@@ -14,8 +15,8 @@ window.addEventListener('load', function () {
             }
         };
         x.addEventListener('swipe', function (e) {
-            if (document.documentElement.classList.contains('highlight')) {
-                var cur = e.target.closest('.section-wrapper');
+            if (window.location.hash) {
+                var cur = e.target.closest('.' + swipeContainerClass);
                 var other;
                 var otherClass;
                 if (e.detail.directions.right) {

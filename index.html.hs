@@ -30,16 +30,14 @@ content = ("text/html",) $ Html << Lang "en" ? do
         javascript "_hyperscript.min.js"
         javascript "swipe-listener.min.js"
         javascript "swipe.js"
-        raw "<script>if (window.innerWidth <= 850) { if (window.location.hash == '') { window.location.hash = 'presentations'; } }</script>"
-        Script ? "htmx.defineExtension('swap-notitle', {handleSwap: function(swapStyle, target, fragment, settleInfo) {delete settleInfo.title;return false;}});"
-        Script ? "htmx.defineExtension('fix-relative-links', {onEvent: function(name,evt) { if (name === 'htmx:afterSwap') { evt.detail.target.querySelectorAll('a[href]').forEach(function(a) { if (!/^https?:\\/\\//i.test(a.getAttribute('href'))) { a.href = evt.detail.pathInfo.requestPath + (a.getAttribute('href').startsWith('/') ? '' : evt.detail.pathInfo.responsePath) + a.getAttribute('href');}})}}});"
-        Script ? "htmx.defineExtension('client-side-templates', {transformResponse : function(text, xhr, elt) {var xsltTemplate = htmx.closest(elt, '[xslt-template]');if (xsltTemplate) {var templateId = xsltTemplate.getAttribute('xslt-template');var template = htmx.find('#' + templateId);if (template) {var content = template.innerHTML ? new DOMParser().parseFromString(template.innerHTML, 'application/xml') : template.contentDocument;var processor = new XSLTProcessor();processor.importStylesheet(content);var data = new DOMParser().parseFromString(text, 'application/xml');var frag = processor.transformToFragment(data, document);return new XMLSerializer().serializeToString(frag);} else {throw 'Unknown XSLT template: ' + templateId;}}return text;}});"
-        Script ? "window.addEventListener('load', function() { window.hl = function() { Array.prototype.slice.call(document.getElementsByClassName('carousel')).map(function(s) {s.checked = false;}); if (location.hash == '') { document.getElementsByTagName('html')[0].className = ''; } else { document.getElementsByTagName('html')[0].className = 'highlight'; document.getElementsByClassName(location.hash.slice(1))[0].previousSibling.checked = true; } }; hl(); });"
-        Script ? "window.addEventListener('load', function() { document.body.addEventListener('click', function(event) { if (event.target.classList.contains('container') || event.target.getAttribute('href') == window.location.hash) { window.location.hash = ''; event.preventDefault(); return false; } }); });"
-        Script ? "window.addEventListener('load', function() { document.querySelectorAll('.carousel').forEach(function(x) {x.addEventListener('click', function(event) { window.location.hash = event.target.parentElement.querySelector('a').getAttribute('href'); });} )});"
+        javascript "fix-relative-hrefs.js"
+        javascript "client-side-templates.js"
+        javascript "swap-notitle.js"
+        javascript "highlight.js"
         css "style.css"
         Script ? analytics
-    Body << HxExt "swap-notitle,fix-relative-links" << Onhashchange "window.hl();" ? do
+    Body << HxExt "swap-notitle,fix-relative-hrefs" ? do
+        Input << Type "hidden" << Id "highlight" ? empty
         Object << Onload "this.loaded=true" << Id "template" << Data_ "rss.xml" ? empty
         Object << Onload "this.loaded=true" << Id "template2" << Data_ "goodreads.xml" ? empty
         Input << Id "lightmode" << Class "lightmode" << Type "checkbox" ? empty
