@@ -53,7 +53,7 @@ css = do
             borderLeftStyle solid
             borderLeftColor transparent
             paddingLeft (em 0.25)
-        "label:hover" ? do
+        "label:hover" <> "label:target" ? do
             borderLeftColor lightBlue
             fontStyle italic
     ".icon" ? do

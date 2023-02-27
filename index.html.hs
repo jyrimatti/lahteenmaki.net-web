@@ -63,7 +63,7 @@ content = ("text/html",) $ Html << Lang "en" ? do
 
 section name body checked = do
     Div << Class "section-wrapper" ? do
-        Input << Id name << Type "radio" << Class "carousel" << Name "carousel" << Checked checked ? empty
+        Input << Id ("carousel-" <> name) << Type "radio" << Class "carousel" << Name "carousel" << Checked checked ? empty
         Div << Class "section" << Class name ? body 
 
 menu = do
@@ -83,11 +83,11 @@ menu = do
             menuItem "this-site" 
 
 menuItem name = do
-    Label << For name ? text name
+    Label << Id name << For ("carousel-" <> name) ? text name
 
 box name body = do
     H2 ? do
-        A << Id name << Href ("#" ++ map (\c -> if c == ' ' then '-' else c) name) ? text name
+        A << Href ("#" ++ map (\c -> if c == ' ' then '-' else c) name) ? text name
     Div << Class "boxcontent" ? body
 
 block title href body = Div << Class "subsection" ? do
