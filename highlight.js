@@ -15,7 +15,7 @@ window.addEventListener("load", function () {
 
   // remove highlighing if the highlighted box header is clicked
   document.body.addEventListener("click", function (event) {
-    if (event.target.classList.contains("container") || event.target.getAttribute("href") == window.location.hash) {
+    if (window.innerWidth > 850 && (event.target.classList.contains("container") || event.target.getAttribute("href") == window.location.hash)) {
       window.location.hash = "";
       event.preventDefault();
       return false;

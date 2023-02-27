@@ -32,25 +32,52 @@ css = do
         textAlign (alignSide sideCenter)
         display flex
         flexDirection column
-    ".content" ? do
-        maxWidth (pct 100)
+        width (pct 100)
+    ".menu-wrapper" ? do
+        display none
+        position absolute
+        left (em 1.5)
+        top (em 2)
+        width (em 8)
+        textAlign (alignSide sideLeft)
+    ".menu" ? do
+        display none
+        flexDirection column
+        backgroundColor "#eeeeee"
+        color black
+        padding (em 0.5) (em 0.5) (em 0.5) (em 0.5)
+        lineHeight (em 1.5)
+        fontVariant smallCaps
+        "label" ? do
+            borderLeftWidth (px 1)
+            borderLeftStyle solid
+            borderLeftColor transparent
+            paddingLeft (em 0.25)
+        "label:hover" ? do
+            borderLeftColor lightBlue
+            fontStyle italic
+    ".icon" ? do
+        fontSize (em 2)
+    query (MediaType "all") [ Feature "hover" $ Just "hover", Feature "pointer" $ Just "fine" ] $ do
+        ".menu-wrapper:hover .menu" ? do
+            display flex
+    ".menu-wrapper:focus .menu" ? do
+        display flex
     ".carousel" ? do
         display none
-    ".header" <> ".section" ? do
-        margin (em 1) (em 1) (em 1) (em 1)
-        roundCorners
-        fontFamily ["cursive"] []
     ".header" ? do
         textShadow 0 0 (px 50) lightBlue
         color lightGray
         padding (em 0.1) (em 0.1) (em 0.1) (em 0.1)
-        marginBottom (px 0)
+        margin 0 (em 1.5) 0 (em 3.5)
+        h1 ? do
+            fontSize (other "min(2em,6vw)")
     ".footer" ? do
         color $ grayish 142
         fontStyle italic
         position absolute
         bottom nil
-        right nil
+        right (em 1)
         padding (em 0.5) (em 0.5) (em 0.5) (em 0.5)
         fontSize (em 0.75)
         background (linearGradient (angular (deg 120)) [(grayish 255,0), (grayish 242,40), (grayish 255,100)])
@@ -66,11 +93,14 @@ css = do
         display inlineBlock
         overflow hidden
     ".section" ? do
+        margin (em 1) (em 1) (em 1) (em 1)
         background (linearGradient (angular (deg 30)) [(lightBlue,pct (-50)), (white,50), (white,100)])
         maxWidth (em 25)
         overflow hidden
         display inlineFlex
         flexDirection column
+	roundCorners
+        fontFamily ["cursive"] []
     "div.sourceCode" ? do
         background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (white,50), (white,100)])
         roundCorners
@@ -91,11 +121,14 @@ css = do
     forM_ [0..9] rotatedSection
     ".highlight" ? do
         ".container" ? do
-            height (vh 100)
+            height (vh 99)
             alignItems center
+        ".menu-wrapper" ? do
+            display block
         ".content" ? do
             display flex
             overflow hidden
+            maxWidth (pct 100)
         ".section-wrapper" ? do
             display flex
             flexDirection column
@@ -103,7 +136,6 @@ css = do
             display none
             marginBottom (em 4.5)
         ".carousel" ? do
-            width (em 1)
             position absolute
             bottom (em 3)
             marginLeft (pct 50)
@@ -111,27 +143,27 @@ css = do
         ".carousel:checked ~ .section" ? do
             display inlineFlex
         ".section-wrapper:nth-child(1) .carousel" ? do
-            left (em (-9.0))
+            left (em (-11))
         ".section-wrapper:nth-child(2) .carousel" ? do
-            left (em (-7.5))
+            left (em (-9))
         ".section-wrapper:nth-child(3) .carousel" ? do
-            left (em (-6))
+            left (em (-7))
         ".section-wrapper:nth-child(4) .carousel" ? do
-            left (em (-4.5))
+            left (em (-5))
         ".section-wrapper:nth-child(5) .carousel" ? do
-            left (em (-3.0))
+            left (em (-3))
         ".section-wrapper:nth-child(6) .carousel" ? do
-            left (em (-1.5))
+            left (em (-1))
         ".section-wrapper:nth-child(7) .carousel" ? do
-            left (em 0)
+            left (em 1)
         ".section-wrapper:nth-child(8) .carousel" ? do
-            left (em 1.5)
+            left (em 3)
         ".section-wrapper:nth-child(9) .carousel" ? do
-            left (em 3.0)
+            left (em 5)
         ".section-wrapper:nth-child(10) .carousel" ? do
-            left (em 4.5)
+            left (em 7)
         ".section-wrapper:nth-child(11) .carousel" ? do
-            left (em 6.0)
+            left (em 9)
         ".boxcontent" ? do
             maxHeight inherit
     ".subsection" ? a ? do

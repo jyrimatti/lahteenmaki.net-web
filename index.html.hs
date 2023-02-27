@@ -37,7 +37,6 @@ content = ("text/html",) $ Html << Lang "en" ? do
         css "style.css"
         Script ? analytics
     Body << HxExt "swap-notitle,fix-relative-hrefs" ? do
-        Input << Type "hidden" << Id "highlight" ? empty
         Object << Onload "this.loaded=true" << Id "template" << Data_ "rss.xml" ? empty
         Object << Onload "this.loaded=true" << Id "template2" << Data_ "goodreads.xml" ? empty
         Input << Id "lightmode" << Class "lightmode" << Type "checkbox" ? empty
@@ -45,6 +44,7 @@ content = ("text/html",) $ Html << Lang "en" ? do
         Input << Id "darkmode" << Class "darkmode" << Type "checkbox" ? empty
         Label << Class "darkmode" << For "darkmode" << TitleA "Switch between lightmode/darkmode" ? empty
         Div << Class "container" ? do
+            menu
             Div << Class "header" ? do
                 H1 ? "jyri-matti lähteenmäki"
             Div << Class "content" ? do
@@ -63,8 +63,27 @@ content = ("text/html",) $ Html << Lang "en" ? do
 
 section name body checked = do
     Div << Class "section-wrapper" ? do
-        Input << Type "radio" << Class "carousel" << Name "carousel" << Checked checked ? empty
+        Input << Id name << Type "radio" << Class "carousel" << Name "carousel" << Checked checked ? empty
         Div << Class "section" << Class name ? body 
+
+menu = do
+    Div << Class "menu-wrapper" << Tabindex "1" ? do
+        Div << Class "icon" ? "☰"
+        Nav << Class "menu" ? do
+            menuItem "presentations" 
+            menuItem "java-stuff" 
+            menuItem "blog" 
+            menuItem "toots" 
+            menuItem "tweets" 
+            menuItem "read-books" 
+            menuItem "railway-stuff" 
+            menuItem "dev" 
+            menuItem "famiglia" 
+            menuItem "contact"
+            menuItem "this-site" 
+
+menuItem name = do
+    Label << For name ? text name
 
 box name body = do
     H2 ? do

@@ -10,6 +10,7 @@ newtype Html   = Html [Attribute]
 newtype Head   = Head [Attribute]
 newtype Title  = Title [Attribute]
 newtype Body   = Body [Attribute]
+newtype Nav    = Nav [Attribute]
 
 newtype Div    = Div [Attribute]
 
@@ -44,6 +45,7 @@ instance NodeLike Html   where val = Html    ; name _ = "html"     ; attr (Html 
 instance NodeLike Head   where val = Head    ; name _ = "head"     ; attr (Head aa)    = aa
 instance NodeLike Title  where val = Title   ; name _ = "title"    ; attr (Title aa)   = aa
 instance NodeLike Body   where val = Body    ; name _ = "body"     ; attr (Body aa)    = aa
+instance NodeLike Nav    where val = Nav     ; name _ = "nav"      ; attr (Nav aa)     = aa
 
 instance NodeLike Div    where val = Div     ; name _ = "div"      ; attr (Div aa)     = aa
 
