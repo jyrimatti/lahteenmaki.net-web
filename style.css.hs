@@ -121,7 +121,8 @@ css = do
     forM_ [0..9] rotatedSection
     ".highlight" ? do
         ".container" ? do
-            height (vh 99)
+            height (vh 80) -- fallback
+            height (other "99dvh")
             alignItems center
         ".menu-wrapper" ? do
             display block
