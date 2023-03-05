@@ -40,10 +40,10 @@ content = ("text/html",) $ Html << Lang "en" ? do
         Object << Onload "this.loaded=true" << Id "template" << Data_ "rss.xml" ? empty
         Object << Onload "this.loaded=true" << Id "template2" << Data_ "goodreads.xml" ? empty
         Input << Id "lightmode" << Class "lightmode" << Type "checkbox" ? empty
-        Label << Class "lightmode" << For "lightmode" << TitleA "Switch between lightmode/darkmode" ? empty
         Input << Id "darkmode" << Class "darkmode" << Type "checkbox" ? empty
-        Label << Class "darkmode" << For "darkmode" << TitleA "Switch between lightmode/darkmode" ? empty
         Div << Class "container" ? do
+            Label << Class "lightmode" << For "lightmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
+            Label << Class "darkmode" << For "darkmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
             menu
             Div << Class "header" ? do
                 H1 ? "jyri-matti lähteenmäki"

@@ -30,15 +30,27 @@ rotatedSection n = "html:not(.highlight) .section-wrapper" # nthChild (fromStrin
                  _ | mod n 2 == 0 -> n
                  otherwise -> n * (-1)
 
+light = do
+    color black
+    backgroundColor white
+    ".section" ? do
+        background (linearGradient (angular (deg 30)) [(lightBlue,pct (-50)), (white,50), (white,100)])
+    "div.sourceCode" ? do
+        background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (white,50), (white,100)])
+
+dark = do
+    color almostWhite
+    backgroundColor almostBlack
+    ".section" ? do
+        background (linearGradient (angular (deg 30)) [(lightBlue,pct (-80)), (darkGray,80), (mediumGray,100)])
+    "div.sourceCode" ? do
+        background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (mediumGray,50), (mediumGray,100)])
+
 css :: Css
 css = do
-    html ? do
-        backgroundColor white
     body ? do
-        color black
-        backgroundColor white
         position relative
-        margin (em $ -1) 0 0 0
+        margin 0 0 0 0
     a ? do
         color lightBlue
         textDecoration none
@@ -91,7 +103,7 @@ css = do
                 borderLeftStyle solid
                 borderLeftColor transparent
                 paddingLeft (em 0.25)
-            "label:hover, label:target" ? do
+            "label:hover" <> "label:target" ? do
                 borderLeftColor lightBlue
                 fontStyle italic
         ".icon" ? do
@@ -128,7 +140,6 @@ css = do
         overflow hidden
     ".section" ? do
         margin (em 1) (em 1) (em 1) (em 1)
-        background (linearGradient (angular (deg 30)) [(lightBlue,pct (-50)), (white,50), (white,100)])
         maxWidth (em 25)
         overflow hidden
         display inlineFlex
@@ -143,10 +154,10 @@ css = do
             paddingLeft (em 0.5)
 
     "div.sourceCode" ? do
-        background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (white,50), (white,100)])
+        color black
         roundCorners
         display inlineBlock
-    ".section, div.sourceCode" ? do
+    ".section" <> "div.sourceCode" ? do
         boxShadow' (px (-3)) (px 1) (px 15) lightBlue
         textAlign (alignSide sideLeft)
         h2 ? do
@@ -154,7 +165,7 @@ css = do
             let pad = (em 0.6)
             padding pad pad pad pad
             margin 0 (em 1.2) 0 (em 1.2)
-            borderBottom solid (px 1) lightGray
+            borderBottom (px 1) solid lightGray
             fontVariant smallCaps
             textAlign (alignSide sideRight)
         div <? do
@@ -243,46 +254,27 @@ css = do
     keyframes "slideFromLeft"  [(0,marginLeft (pct (-150)))                         , (100,marginLeft (pct 0))]
     keyframes "slideFromRight" [(0,marginLeft (pct 150) <> marginRight (pct (-150))), (100,marginLeft (pct 0) <> marginRight (pct 0))]
 
-    ".lightmode, .darkmode" ? do
+    ".lightmode" <> ".darkmode" ? do
         position sticky
-        float floatRight
+        alignSelf flexEnd
         top (em 1.5)
         right (em 1.5)
         zIndex 1
-    "input.lightmode, input.darkMode" ? do
+    "input.lightmode" <> "input.darkMode" ? do
         display none
-    "label.lightmode:before, label.darkmode:before" ? do
-        content $ stringContent "🌓"
-    
-    ".lightmode:checked~.container" ? do
-        color black
-        backgroundColor white
-        ".section" ? do
-            background (linearGradient (angular (deg 30)) [(lightBlue,pct (-50)), (white,50), (white,100)])
-        "div.sourceCode" ? do
-            background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (white,50), (white,100)])
-    ".darkmode:checked~.container" ? do
-        color almostWhite
-        backgroundColor almostBlack
-        ".section" ? do
-            background (linearGradient (angular (deg 30)) [(lightBlue,pct (-80)), (darkGray,80), (mediumGray,100)])
-        "div.sourceCode" ? do
-            color black
-            background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (mediumGray,50), (mediumGray,100)])
-    
+
     query (MediaType "all") [ Feature "prefers-color-scheme" $ Just "light" ] $ do
         ".lightmode" ? do
             display none
+        ".container" ? do
+            light
     query (MediaType "all") [ Feature "prefers-color-scheme" $ Just "dark" ] $ do
         ".darkmode" ? do
             display none
-        html ? do
-            backgroundColor almostBlack
-        body ? do
-            color almostWhite
-            backgroundColor almostBlack
-        ".section" ? do
-            background (linearGradient (angular (deg 30)) [(lightBlue,pct (-80)), (darkGray,80), (mediumGray,100)])
-        "div.sourceCode" ? do
-            color black
-            background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (mediumGray,50), (mediumGray,100)])
+        ".container" ? do
+            dark
+
+    ".lightmode:checked ~ .container" ? do
+        light
+    ".darkmode:checked ~ .container" ? do
+        dark
