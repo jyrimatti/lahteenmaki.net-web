@@ -158,6 +158,7 @@ type instance LegalChild Div H2 = Legal
 type instance LegalChild Div H3 = Legal
 type instance LegalChild Div A = Legal
 type instance LegalChild Div Input = Legal
+type instance LegalChild Div Label = Legal
 type instance LegalChild Div Script = Legal
 type instance LegalChild Div Nav = Legal
 type instance LegalChild Script String = Legal

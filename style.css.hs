@@ -12,7 +12,10 @@ import Clay.Stylesheet (Feature(..), MediaType(..))
 import Control.Monad (forM_)
 import Data.String (fromString)
 
+main :: IO ()
 main = putStrLn $ unpack $ renderWith compact [] css
+
+lightGray, mediumGray, darkGray, lightBlue, almostWhite, almostBlack :: Color
 
 lightGray = rgb 200 200 200
 mediumGray = rgb 142 142 142
@@ -21,6 +24,7 @@ lightBlue = rgb 97 205 245
 almostWhite = rgb 238 238 238
 almostBlack = rgb 18 18 18
 
+roundCorners :: Css
 roundCorners = borderRadius (em 0.4) (em 0.4) (em 0.4) (em 0.4)
 
 rotatedSection :: Int -> Css
@@ -30,6 +34,7 @@ rotatedSection n = "html:not(.highlight) .section-wrapper" # nthChild (fromStrin
                  _ | mod n 2 == 0 -> n
                  otherwise -> n * (-1)
 
+light :: Css
 light = do
     color black
     backgroundColor white
@@ -38,6 +43,7 @@ light = do
     "div.sourceCode" ? do
         background (linearGradient (angular (deg 210)) [(lightBlue,pct (-50)), (white,50), (white,100)])
 
+dark :: Css
 dark = do
     color almostWhite
     backgroundColor almostBlack
@@ -50,7 +56,7 @@ css :: Css
 css = do
     body ? do
         position relative
-        margin 0 0 0 0
+        margin (px 0) 0 0 0
     a ? do
         color lightBlue
         textDecoration none
@@ -87,7 +93,7 @@ css = do
         display none
         position absolute
         left (em 1.5)
-        top (em 2)
+        top (em 1)
         width (em 8)
         textAlign (alignSide sideLeft)
         ".menu" ? do
@@ -119,10 +125,10 @@ css = do
     ".header" ? do
         textShadow 0 0 (px 50) lightBlue
         color lightGray
-        padding (em 0.1) (em 0.1) (em 0.1) (em 0.1)
         margin 0 (em 1.5) 0 (em 3.5)
         h1 ? do
             fontSize (other "min(2em,6vw)")
+            marginTop (em 0)
     ".footer" ? do
         color $ mediumGray
         fontStyle italic
@@ -165,7 +171,7 @@ css = do
             let pad = (em 0.6)
             padding pad pad pad pad
             margin 0 (em 1.2) 0 (em 1.2)
-            borderBottom (px 1) solid lightGray
+            borderBottom solid (px 1) lightGray
             fontVariant smallCaps
             textAlign (alignSide sideRight)
         div <? do
@@ -264,11 +270,15 @@ css = do
         display none
 
     query (MediaType "all") [ Feature "prefers-color-scheme" $ Just "light" ] $ do
+        html ? do
+            backgroundColor white
         ".lightmode" ? do
             display none
         ".container" ? do
             light
     query (MediaType "all") [ Feature "prefers-color-scheme" $ Just "dark" ] $ do
+        html ? do
+            backgroundColor black
         ".darkmode" ? do
             display none
         ".container" ? do
