@@ -266,7 +266,7 @@ css = do
         top (em 1.5)
         right (em 1.5)
         zIndex 1
-    "input.lightmode" <> "input.darkMode" ? do
+    "input.lightmode" <> "input.darkmode" ? do
         display none
 
     query (MediaType "all") [ Feature "prefers-color-scheme" $ Just "light" ] $ do
