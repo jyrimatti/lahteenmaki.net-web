@@ -261,6 +261,7 @@ css = do
     keyframes "slideFromRight" [(0,marginLeft (pct 150) <> marginRight (pct (-150))), (100,marginLeft (pct 0) <> marginRight (pct 0))]
 
     ".lightmode" <> ".darkmode" ? do
+        position (other "-webkit-sticky")
         position sticky
         alignSelf flexEnd
         top (em 1.5)
