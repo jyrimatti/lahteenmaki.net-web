@@ -60,7 +60,7 @@ content = ("text/html",) $ Html << Lang "en" ? do
                 Div << Class "footer" ? "© Jyri-Matti Lähteenmäki 2023"
 
 section name body checked = do
-    Div << Class "section-wrapper" ? do
+    Div << Id name <<  Class "section-wrapper" ? do
         Input << Id ("carousel-" <> name) << Type "radio" << Class "carousel" << Name "carousel" << Checked checked ? empty
         Div << Class "section" << Class name ? body 
 
@@ -81,11 +81,12 @@ menu = do
             menuItem "this-site" 
 
 menuItem name = do
-    Label << Id name << For ("carousel-" <> name) ? text name
+    Label << Id ("item-" <> name) << For ("carousel-" <> name) ? text name
 
 box name body = do
     H2 ? do
-        A << Href ("#" ++ map (\c -> if c == ' ' then '-' else c) name) ? text name
+        A << Class "on" << Href ("#" ++ map (\c -> if c == ' ' then '-' else c) name) ? text name
+        A << Class "off" << Href "#" ? text name
     Div << Class "boxcontent" ? body
 
 block title href body = Div << Class "subsection" ? do

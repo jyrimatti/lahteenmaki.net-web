@@ -156,6 +156,12 @@ css = do
         flexDirection column
         roundCorners
         fontFamily ["cursive"] []
+    ".off" ? do
+        display none
+    ":target ~ * .off" <> ":target .off" ? do
+        display inline
+    ":target ~ * .on" <> ":target .on" ? do
+        display none
     ".boxcontent" ? do
         maxHeight (px 350)
         overflow scroll
