@@ -28,8 +28,6 @@ content = ("text/html",) $ Html << Lang "en" ? do
         Meta << Name "viewport" << Content "width=device-width, initial-scale=1.0" ? empty
         javascript "htmx.min.js"
         javascript "_hyperscript.js"
-        javascript "swipe-listener.min.js"
-        javascript "swipe.js"
         javascript "fix-relative-hrefs.js"
         javascript "client-side-templates.js"
         javascript "swap-notitle.js"

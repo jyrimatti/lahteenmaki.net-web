@@ -89,6 +89,9 @@ css = do
         flexDirection column
         width (pct 100)
     
+    ".menu" ? do
+        display flex
+        visibility hidden
     ".menu-wrapper" ? do
         display none
         position absolute
@@ -97,7 +100,6 @@ css = do
         width (em 8)
         textAlign (alignSide sideLeft)
         ".menu" ? do
-            display none
             flexDirection column
             backgroundColor almostWhite
             color black
@@ -117,10 +119,12 @@ css = do
     query (MediaType "all") [ Feature "hover" $ Just "hover", Feature "pointer" $ Just "fine" ] $ do
         ".menu-wrapper:hover" ? do
             ".menu" ? do
-                display flex
+                --display flex
+                visibility visible
     ".menu-wrapper:focus" ? do
         ".menu" ? do
-            display flex
+            --display flex
+            visibility visible
     
     ".header" ? do
         textShadow 0 0 (px 50) lightBlue
@@ -189,14 +193,20 @@ css = do
             display block
         ".content" ? do
             display flex
-            overflow hidden
-            maxWidth (pct 100)
+            overflowX scroll
+            width (vw 100)
+            "scroll-snap-type" -: "x mandatory"
         ".section-wrapper" ? do
             display flex
             flexDirection column
+            overflow visible
+            "scroll-snap-stop" -: "always"
+            "scroll-snap-align" -: "start"
         ".section" ? do
-            display none
             marginBottom (em 4.5)
+            margin (em 1) (vw 2) (em 5) (vw 2)
+            width (vw 96)
+            maxWidth none
         ".boxcontent" ? do
             maxHeight inherit
         
@@ -205,8 +215,6 @@ css = do
             bottom (em 3)
             marginLeft (pct 50)
             display inline
-        ".carousel:checked ~ .section" ? do
-            display inlineFlex
         ".section-wrapper:nth-child(1) .carousel" ? do
             left (em (-11))
         ".section-wrapper:nth-child(2) .carousel" ? do
