@@ -63,7 +63,7 @@ highlight = do
             alignItems center
         ".menu-wrapper" ? do
             display block
-        ".content" ? do
+        "main" ? do
             display flex
             overflowX scroll
             width (vw 100)
@@ -74,12 +74,12 @@ highlight = do
             overflow visible
             "scroll-snap-stop" -: "always"
             "scroll-snap-align" -: "start"
-        ".section" ? do
-            marginBottom (em 5)
-            marginTop (em 1)
-            marginLeft (other "calc(calc(100vw - 21em) / 2)")
-            marginRight (other "calc(calc(100vw - 21em) / 2)")
-            width (em 21)
+            ".section" ? do
+                marginBottom (em 5)
+                marginTop (em 1)
+                marginLeft (other "calc(calc(100vw - 21em) / 2)")
+                marginRight (other "calc(calc(100vw - 21em) / 2)")
+                width (em 21)
         ".boxcontent" ? do
             maxHeight (other "calc(100vh - 17em)")
         ".carousel" ? do
