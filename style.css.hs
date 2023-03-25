@@ -77,9 +77,9 @@ highlight = do
         ".section" ? do
             marginBottom (em 5)
             marginTop (em 1)
-            marginLeft (other "calc(calc(100vw - 25em) / 2)")
-            marginRight (other "calc(calc(100vw - 25em) / 2)")
-            width (em 25)
+            marginLeft (other "calc(calc(100vw - 21em) / 2)")
+            marginRight (other "calc(calc(100vw - 21em) / 2)")
+            width (em 21)
         ".boxcontent" ? do
             maxHeight (other "calc(100vh - 17em)")
         ".carousel" ? do
