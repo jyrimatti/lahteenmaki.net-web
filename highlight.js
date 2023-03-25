@@ -26,9 +26,13 @@ window.addEventListener("load", function () {
     scrollPos = ev.target.scrollLeft;
   });
   setInterval(function() {
-    if (scrollPos == content.scrollLeft) {
-      [...document.querySelectorAll('.section')].filter(function(e) { return e.getBoundingClientRect().left > 0 && e.getBoundingClientRect().left < 100; })
-                                                .forEach(function(x) { window.location.hash = '#' + [...x.classList].filter(function(v) { return v != 'section'; }); });
+    if (scrollPos != 0 && scrollPos == content.scrollLeft) {
+      [...document.querySelectorAll('.section-wrapper')].filter(function(e) {
+          return e.getBoundingClientRect().left > -100 && e.getBoundingClientRect().left < 100;
+      }).forEach(function(x) {
+          window.location.hash = '#' + x.id;
+          scrollPos = 0;
+      });
     }
   }, 500);
 

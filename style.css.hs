@@ -209,10 +209,11 @@ css = do
             "scroll-snap-stop" -: "always"
             "scroll-snap-align" -: "start"
         ".section" ? do
-            marginBottom (em 4.5)
-            margin (em 1) (vw 2) (em 5) (vw 2)
-            width (vw 96)
-            maxWidth none
+            marginBottom (em 5)
+            marginTop (em 1)
+            marginLeft (other "calc(calc(100vw - 25em) / 2)")
+            marginRight (other "calc(calc(100vw - 25em) / 2)")
+            width (em 25)
         ".boxcontent" ? do
             maxHeight inherit
         
