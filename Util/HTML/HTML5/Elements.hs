@@ -31,11 +31,16 @@ newtype Li     = Li [Attribute]
 newtype Dt     = Dt [Attribute]
 newtype Dd     = Dd [Attribute]
 
-newtype A      = A [Attribute]
-newtype Link   = Link [Attribute]
-newtype Script = Script [Attribute]
-newtype Style  = Style [Attribute]
-newtype IFrame = IFrame [Attribute]
+newtype A       = A [Attribute]
+newtype Link    = Link [Attribute]
+newtype Script  = Script [Attribute]
+newtype Style   = Style [Attribute]
+newtype IFrame  = IFrame [Attribute]
+newtype Section = Section [Attribute]
+newtype Header  = Header [Attribute]
+newtype Footer  = Footer [Attribute]
+newtype Article = Article [Attribute]
+newtype Main    = Main [Attribute]
 
 newtype Meta   = Meta [Attribute]
 newtype Object = Object [Attribute]
@@ -46,6 +51,11 @@ instance NodeLike Head   where val = Head    ; name _ = "head"     ; attr (Head 
 instance NodeLike Title  where val = Title   ; name _ = "title"    ; attr (Title aa)   = aa
 instance NodeLike Body   where val = Body    ; name _ = "body"     ; attr (Body aa)    = aa
 instance NodeLike Nav    where val = Nav     ; name _ = "nav"      ; attr (Nav aa)     = aa
+instance NodeLike Main    where val = Main    ; name _ = "main"    ; attr (Main aa)    = aa
+instance NodeLike Article where val = Article ; name _ = "article" ; attr (Article aa) = aa
+instance NodeLike Header  where val = Header  ; name _ = "header"  ; attr (Header aa)  = aa
+instance NodeLike Section where val = Section ; name _ = "section" ; attr (Section aa) = aa
+instance NodeLike Footer  where val = Footer  ; name _ = "footer"  ; attr (Footer aa)  = aa
 
 instance NodeLike Div    where val = Div     ; name _ = "div"      ; attr (Div aa)     = aa
 

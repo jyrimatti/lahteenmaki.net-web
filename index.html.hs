@@ -31,38 +31,37 @@ content = ("text/html",) $ Html << Lang "en" ? do
         javascript "fix-relative-hrefs.js"
         javascript "client-side-templates.js"
         javascript "swap-notitle.js"
-        javascript "highlight.js"
         css "style.css"
         Script ? analytics
     Body << HxExt "swap-notitle,fix-relative-hrefs" ? do
-        Object << Onload "this.loaded=true" << Id "template" << Data_ "rss.xml" ? empty
+        Object << Onload "this.loaded=true" << Id "template"  << Data_ "rss.xml" ? empty
         Object << Onload "this.loaded=true" << Id "template2" << Data_ "goodreads.xml" ? empty
         Input << Id "lightmode" << Class "lightmode" << Type "checkbox" ? empty
-        Input << Id "darkmode" << Class "darkmode" << Type "checkbox" ? empty
+        Input << Id "darkmode"  << Class "darkmode"  << Type "checkbox" ? empty
         Div << Class "container" ? do
             Label << Class "lightmode" << For "lightmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
-            Label << Class "darkmode" << For "darkmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
+            Label << Class "darkmode"  << For "darkmode"  << TitleA "Switch between lightmode/darkmode" ? "🌓"
             menu
-            Div << Class "header" ? do
+            Header << Class "header" ? do
                 H1 ? "jyri-matti lähteenmäki"
-            Div << Class "content" ? do
-                section "presentations" presentations True
-                section "java-stuff" javastuff False
-                section "blog" blog False
-                section "toots" toots False
-                section "tweets" tweets False
-                section "read-books" books False
-                section "railway-stuff" junailua False
-                section "dev" ohjelmointi False
-                section "famiglia" perhe False
-                section "contact" yhteys False
-                section "this-site" tamasivu False
-                Div << Class "footer" ? "© Jyri-Matti Lähteenmäki 2023"
+            Main << Class "content" ? do
+                section "presentations" presentations
+                section "java-stuff" javastuff
+                section "blog" blog
+                section "toots" toots
+                section "tweets" tweets
+                section "read-books" books
+                section "railway-stuff" junailua
+                section "dev" ohjelmointi
+                section "famiglia" perhe
+                section "contact" yhteys
+                section "this-site" tamasivu
+                Footer << Class "footer" ? "© Jyri-Matti Lähteenmäki 2023"
 
-section name body checked = do
+section name body = do
     Div << Id name <<  Class "section-wrapper" ? do
-        Input << Id ("carousel-" <> name) << Type "radio" << Class "carousel" << Name "carousel" << Checked checked ? empty
-        Div << Class "section" << Class name ? body 
+        A << Href ("#" <> name) << Class "carousel" ? ""
+        Section << Class "section" << Class name << Script_ "on intersection(intersecting) having threshold 1 if intersecting and (location.hash of window != '' or window.visualViewport.width <= 860) then trigger click on previous <a/>" ? body 
 
 menu = do
     Div << Class "menu-wrapper" << Tabindex "1" ? do
@@ -81,7 +80,7 @@ menu = do
             menuItem "this-site" 
 
 menuItem name = do
-    Label << Id ("item-" <> name) << For ("carousel-" <> name) ? text name
+    A << Id ("menu-" <> name) << Href ("#" <> name) ? text name
 
 box name body = do
     H2 ? do
