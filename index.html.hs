@@ -60,8 +60,9 @@ content = ("text/html",) $ Html << Lang "en" ? do
 
 section name body = do
     Div << Id name <<  Class "section-wrapper" ? do
-        A << Href ("#" <> name) << Class "carousel" ? ""
-        Section << Class "section" << Class name << Script_ "on intersection(intersecting) having threshold 1 if intersecting and (location.hash of window != '' or window.visualViewport.width <= 860) then trigger click on previous <a/>" ? body 
+        A << Id ("a-" <> name) << Href ("#" <> name) << Class "carousel" ? do
+            Script ? raw ("document.querySelector('#a-" <> name <> "').addEventListener('doClick', y => y.target.click())")
+        Section << Class "section" << Class name << Script_ "on intersection(intersecting) having threshold 1 if intersecting and (location.hash of window != '' or window.visualViewport.width <= 860) then trigger doClick on previous <a/>" ? body 
 
 menu = do
     Div << Class "menu-wrapper" << Tabindex "1" ? do

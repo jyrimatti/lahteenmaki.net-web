@@ -162,6 +162,7 @@ type instance LegalChild Div A = Legal
 type instance LegalChild Div Input = Legal
 type instance LegalChild Div Label = Legal
 type instance LegalChild Div Script = Legal
+type instance LegalChild A Script = Legal
 type instance LegalChild Div Nav = Legal
 type instance LegalChild Div Section = Legal
 type instance LegalChild Div Header = Legal
