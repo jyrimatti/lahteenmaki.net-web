@@ -88,6 +88,7 @@ highlight = do
             marginLeft (pct 50)
             display inline
             backgroundColor almostWhite
+            transition "background-color" (ms 250) ease 0
             width (em 0.3)
             height (em 0.3)
             borderStyle solid
