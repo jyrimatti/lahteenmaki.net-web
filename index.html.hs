@@ -1,13 +1,13 @@
 #!/usr/bin/env nix-shell
 #!nix-shell -i runhaskell -p "haskellPackages.ghcWithPackages(p: with p; [text (pkgs.haskell.lib.dontCheck clay)])"
-{-# OPTIONS_GHC -Wall #-}
+{-# OPTIONS_GHC -Wall -Wno-unused-do-bind -Wno-missing-signatures #-}
 {-# LANGUAGE OverloadedStrings, TupleSections, FlexibleContexts, TypeFamilies #-}
 import Data.Text.Lazy (unpack)
 
 import Util.Markup
 import Util.HTML.HTML5
-import Util.HTML.HTML5.Attributes (Class(..), Type(..))
 
+main :: IO ()
 main = putStrLn $ unpack $ render content
 
 content :: Markup
@@ -58,10 +58,10 @@ content = ("text/html",) $ Html << Lang "en" ? do
                 section "this-site" tamasivu
                 Footer << Class "footer" ? "© Jyri-Matti Lähteenmäki 2023"
 
-section name body = do
-    Div << Id name <<  Class "section-wrapper" ? do
-        A << Href ("#" <> name) << Class "carousel" << Onclick "this.click()" ? "" -- Chrome needs this onclick handler for whatever reason...
-        Section << Class "section" << Class name << Script_ "on intersection(intersecting) having threshold 1 if intersecting and (location.hash of window != '' or window.visualViewport.width <= 860) then trigger click on previous <a/>" ? body 
+section secName body = do
+    Div << Id secName <<  Class "section-wrapper" ? do
+        A << Href ("#" <> secName) << Class "carousel" << Onclick "this.click()" ? "" -- Chrome needs this onclick handler for whatever reason...
+        Section << Class "section" << Class secName << Script_ "on intersection(intersecting) having threshold 1 if intersecting and (location.hash of window != '' or window.visualViewport.width <= 860) then trigger click on previous <a/>" ? body 
 
 menu = do
     Div << Class "menu-wrapper" << Tabindex "1" ? do
@@ -79,13 +79,13 @@ menu = do
             menuItem "contact"
             menuItem "this-site" 
 
-menuItem name = do
-    A << Id ("menu-" <> name) << Href ("#" <> name) ? text name
+menuItem secName = do
+    A << Id ("menu-" <> secName) << Href ("#" <> secName) ? text secName
 
-box name body = do
+box secName body = do
     H2 ? do
-        A << Class "on" << Href ("#" ++ map (\c -> if c == ' ' then '-' else c) name) ? text name
-        A << Class "off" << Href "#" ? text name
+        A << Class "on" << Href ("#" ++ map (\c -> if c == ' ' then '-' else c) secName) ? text secName
+        A << Class "off" << Href "#" ? text secName
     Div << Class "boxcontent" ? body
 
 block title href body = Div << Class "subsection" ? do
@@ -147,19 +147,19 @@ yhteys = box "contact" $ do
         Li ? ahref "https://www.facebook.com/jyrimatti.lahteenmaki"
 
 ohjelmointi = box "dev" $ do
-    block "flow" $
+    subs "flow" $
         Div ? do
             A << Href "https://twitter.com/jyrimatti" ? "Twitter"
-    block "blog" $
+    subs "blog" $
         Div ? do
             ahref "https://blog.lahteenmaki.net"
-    block "links" $
+    subs "links" $
         Div ? do
             A << Href "https://pinboard.in/u:jyrimatti/" ? "Pinboard"
-    block "projects" $
+    subs "projects" $
         Div ? do
             A << Href "http://github.com/jyrimatti" ? "GitHub"
-  where block title body = Div << Class "subsection" ? do
+  where subs title body = Div << Class "subsection" ? do
                                H3 ? title
                                body
 

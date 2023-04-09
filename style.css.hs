@@ -20,10 +20,10 @@ sections = ["presentations", "java-stuff", "blog", "toots", "tweets", "read-book
 
 lightGray, mediumGray, darkGray, lightBlue, almostWhite, almostBlack :: Color
 
-lightGray = rgb 200 200 200
-mediumGray = rgb 142 142 142
-darkGray = rgb 30 30 30
-lightBlue = rgb 97 205 245
+lightGray   = rgb 200 200 200
+mediumGray  = rgb 142 142 142
+darkGray    = rgb 30 30 30
+lightBlue   = rgb 97 205 245
 almostWhite = rgb 238 238 238
 almostBlack = rgb 18 18 18
 
@@ -34,8 +34,8 @@ rotatedSection :: Int -> Css
 rotatedSection n = ".section-wrapper" # nthChild (fromString $ show n) ? do
     transforms [translate3d nil nil 1, rotateZ (deg $ 2 + fromIntegral (negate n))]
     where negate n = case n of
-                 _ | mod n 2 == 0 -> n
-                 otherwise -> n * (-1)
+                 _ | even n -> n
+                 _          -> n * (-1)
 
 light :: Css
 light = do
@@ -77,7 +77,7 @@ highlight = do
             ".section" ? do
                 marginBottom (em 5)
                 marginTop (em 1)
-                marginLeft (other "calc(calc(100vw - 21em) / 2)")
+                marginLeft  (other "calc(calc(100vw - 21em) / 2)")
                 marginRight (other "calc(calc(100vw - 21em) / 2)")
                 width (em 21)
         ".boxcontent" ? do
@@ -125,7 +125,7 @@ css :: Css
 css = do
     body ? do
         position relative
-        margin (px 0) 0 0 0
+        margin nil nil nil nil
     a ? do
         color lightBlue
         textDecoration none
@@ -145,9 +145,9 @@ css = do
         marginBottom (em 0.5)
     object ? do
         position absolute
-        bottom (px 0)
-        width (px 0)
-        height (px 0)
+        bottom nil
+        width nil
+        height nil
     iframe ? do
         width (pct 100)
         height (em 15)
@@ -187,7 +187,7 @@ css = do
                 fontStyle italic
         ".icon" ? do
             fontSize (em 2)
-    (foldl1 (\a b -> a <> b) $ fmap (\s -> element $ fromString $ "body:has(#" <> s <> ":target) #menu-" <> s) sections) ? do
+    (foldl1 (<>) $ fmap (\s -> element $ fromString $ "body:has(#" <> s <> ":target) #menu-" <> s) sections) ? do
         borderLeftColor lightBlue
         fontStyle italic
     query (MediaType "all") [ Feature "hover" $ Just "hover", Feature "pointer" $ Just "fine" ] $ do
@@ -205,9 +205,9 @@ css = do
         margin 0 (em 1.5) 0 (em 3.5)
         h1 ? do
             fontSize (other "min(2em,6vw)")
-            marginTop (em 0)
+            marginTop nil
     ".footer" ? do
-        color $ mediumGray
+        color mediumGray
         fontStyle italic
         position absolute
         bottom nil
@@ -257,8 +257,7 @@ css = do
         textAlign (alignSide sideLeft)
         h2 ? do
             color lightGray
-            let pad = (em 0.6)
-            padding pad pad pad pad
+            padding (em 0.6) (em 0.6) (em 0.6) (em 0.6)
             margin 0 (em 1.2) 0 (em 1.2)
             borderBottom solid (px 1) lightGray
             fontVariant smallCaps
@@ -281,30 +280,6 @@ css = do
                 h2 ? do
                     display none
     
-    ".animate" ? do
-        animationDuration (sec 0.5)
-        animationFillMode forwards
-    ".animateLeft" ? do
-        animationName "slideLeft"
-        transitionTimingFunction easeOut
-    ".animateRight" ? do
-        animationName "slideRight"
-        transitionTimingFunction easeOut
-    ".animateFromLeft" ? do
-        animationName "slideFromLeft"
-        transitionTimingFunction easeIn
-        ".section" ? do
-            display inlineFlex
-    ".animateFromRight" ? do
-        animationName "slideFromRight"
-        transitionTimingFunction easeIn
-        ".section" ? do
-            display inlineFlex
-    keyframes "slideLeft"      [(0,marginLeft (pct 0))                              , (100,marginLeft (pct (-150)))]
-    keyframes "slideRight"     [(0,marginLeft (pct 0) <> marginRight (pct 0))       , (100,marginLeft (pct 150) <> marginRight (pct (-150)))]
-    keyframes "slideFromLeft"  [(0,marginLeft (pct (-150)))                         , (100,marginLeft (pct 0))]
-    keyframes "slideFromRight" [(0,marginLeft (pct 150) <> marginRight (pct (-150))), (100,marginLeft (pct 0) <> marginRight (pct 0))]
-
     ".lightmode" <> ".darkmode" ? do
         position (other "-webkit-sticky")
         position sticky
