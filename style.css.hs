@@ -189,12 +189,11 @@ css = do
         borderLeftColor lightBlue
         fontStyle italic
     query (MediaType "all") [ Feature "hover" $ Just "hover", Feature "pointer" $ Just "fine" ] $ do
-        ".menu-wrapper:hover" ? do
-            ".menu" ? do
+        ".menu-wrapper" ? do
+            ".icon:hover ~ .menu" <> ".menu:hover" ? do
                 visibility visible
-    ".menu-wrapper:focus" ? do
-        ".menu" ? do
-            visibility visible
+    ".menu-wrapper:focus .menu" ? do
+        visibility visible
     
     ".header" ? do
         textShadow 0 0 (px 50) lightBlue
