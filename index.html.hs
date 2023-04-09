@@ -32,10 +32,11 @@ content = ("text/html",) $ Html << Lang "en" ? do
         javascript "client-side-templates.js"
         javascript "swap-notitle.js"
         css "style.css"
+        Script ? "window.onload = function() { htmx.trigger(window, 'customLoad'); }" -- TODO: remove when HTMX bug fixed
         Script ? analytics
     Body << HxExt "swap-notitle,fix-relative-hrefs" ? do
-        Object << Onload "this.loaded=true" << Id "template"  << Data_ "rss.xml" ? empty
-        Object << Onload "this.loaded=true" << Id "template2" << Data_ "goodreads.xml" ? empty
+        Object << Id "template"  << Data_ "rss.xml" ? empty
+        Object << Id "template2" << Data_ "goodreads.xml" ? empty
         Input << Id "lightmode" << Class "lightmode" << Type "checkbox" ? empty
         Input << Id "darkmode"  << Class "darkmode"  << Type "checkbox" ? empty
         Div << Class "container" ? do
@@ -164,29 +165,30 @@ ohjelmointi = box "dev" $ do
                                body
 
 toots = box "toots" $ do
-  Div << Script_ "on htmx:afterSwap repeat in (<blockquote /> in me) set its innerHTML to its innerText" ? do
-    Div << HxGet "https://mastodon.online/@jyrimatti.rss"
-        << HxExt "client-side-templates"
-        << HxTrigger "every 1s [document.getElementById('template').loaded]" -- try repeatedly, since template may not load immediately
-        << HxSwap "outerHTML" -- stop polling
-        << XsltTemplate "template" ?
-            "loading..."
+  Div << Script_ "on htmx:afterSwap repeat in (<blockquote /> in me) set its innerHTML to its innerText"
+      << HxGet "https://mastodon.online/@jyrimatti.rss"
+      << HxExt "client-side-templates"
+      << HxTrigger "customLoad from:window"
+      << XsltTemplate "template" ?
+          "loading..."
 
 tweets = box "tweets" $ do
     A << Class "twitter-timeline" << Href "https://twitter.com/jyrimatti" << Data "widget-id" "331834452940570626" << Data "chrome" "noheader nofooter transparent noborders" ? "Tweets by @jyrimatti"
     Script ? raw "!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+\"://platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");"
 
 books = box "read books" $ do
-  Div << Script_ "on htmx:afterSwap repeat in (<blockquote /> in me) set its innerHTML to its innerText" ? do
-    Div << HxGet "/goodreads/29730596?shelf=read"
-        << HxExt "client-side-templates"
-        << HxTrigger "every 1s [document.getElementById('template2').loaded]" -- try repeatedly, since template may not load immediately
-        << HxSwap "outerHTML" -- stop polling
-        << XsltTemplate "template2" ?
-            "loading..."
+  Div << Script_ "on htmx:afterSwap repeat in (<blockquote /> in me) set its innerHTML to its innerText"
+      << HxGet "/goodreads/29730596?shelf=read"
+      << HxExt "client-side-templates"
+      << HxTrigger "customLoad from:window"
+      << XsltTemplate "template2" ?
+          "loading..."
 
 blog = box "blog" $ do
-    Div << HxGet "https://blog.lahteenmaki.net" << HxSelect ".posts" << HxTrigger "load" ? "loading..."
+    Div << HxGet "https://blog.lahteenmaki.net"
+        << HxSelect ".posts"
+        << HxTrigger "load from:window" ?
+            "loading..."
 
 junailua = box "railway stuff" $ do
     block "Rafiikka" "https://rafiikka.lahteenmaki.net" $

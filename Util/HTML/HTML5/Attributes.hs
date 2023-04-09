@@ -91,6 +91,7 @@ newtype Onwaiting = Onwaiting String
 
 newtype Data_ = Data_ String
 newtype As = As String
+newtype Blocking = Blocking String
 
 data Data = Data String String
 
@@ -209,7 +210,8 @@ instance AttributeLike Onwaiting where toAttr (Onwaiting v)   = Attribute "onwai
 
 instance AttributeLike Data   where toAttr (Data n v)   = Attribute ("data-" ++ n) v
 
-instance AttributeLike As   where toAttr (As v)   = Attribute "as" v
+instance AttributeLike As       where toAttr (As v)         = Attribute "as" v
+instance AttributeLike Blocking where toAttr (Blocking v)   = Attribute "blocking" v
 
 -- aria
 instance AttributeLike Role   where toAttr (Role v)   = Attribute "role" v

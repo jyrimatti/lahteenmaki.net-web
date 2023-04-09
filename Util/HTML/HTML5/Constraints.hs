@@ -97,6 +97,7 @@ type instance LegalAttribute any Onwaiting = Legal
 type instance LegalAttribute any Data = Legal
 
 type instance LegalAttribute Link As = Legal
+type instance LegalAttribute Link Blocking = Legal
 type instance LegalAttribute Link Type = Legal
 type instance LegalAttribute Link Href = Legal
 type instance LegalAttribute Link Rel = Legal
@@ -150,6 +151,7 @@ type instance LegalChild Body Div = Legal
 type instance LegalChild Body Input = Legal
 type instance LegalChild Body Label = Legal
 type instance LegalChild Body Object = Legal
+type instance LegalChild Body Script = Legal
 type instance LegalChild Nav Label = Legal
 type instance LegalChild Nav A = Legal
 type instance LegalChild Label String = Legal
