@@ -161,6 +161,7 @@ css = do
     ".menu" ? do
         display flex
         visibility hidden
+        opacity 0
     ".menu-wrapper" ? do
         display none
         position absolute
@@ -174,6 +175,7 @@ css = do
             padding (em 0.5) (em 0.5) (em 0.5) (em 0.5)
             lineHeight (em 1.5)
             fontVariant smallCaps
+            transition "opacity" (ms 250) ease 0
             "a" ? do
                 color almostBlack
                 borderLeftWidth (px 1)
@@ -192,8 +194,10 @@ css = do
         ".menu-wrapper" ? do
             ".icon:hover ~ .menu" <> ".menu:hover" ? do
                 visibility visible
+                opacity 1
     ".menu-wrapper:focus .menu" ? do
         visibility visible
+        opacity 1
     
     ".header" ? do
         textShadow 0 0 (px 50) lightBlue
