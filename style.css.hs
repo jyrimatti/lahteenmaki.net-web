@@ -238,6 +238,7 @@ css = do
     ":target ~ * .on" <> ":target .on" ? do
         display none
     ".boxcontent" ? do
+        minHeight (px 200)
         maxHeight (px 350)
         overflow scroll
     ".subsection" ? do
