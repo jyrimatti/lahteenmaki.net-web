@@ -62,7 +62,7 @@ content = ("text/html",) $ Html << Lang "en" ? do
 section secName body = do
     Div << Id secName <<  Class "section-wrapper" ? do
         A << Href ("#" <> secName) << Class "carousel" << Onclick "this.click()" ? "" -- Chrome needs this onclick handler for whatever reason...
-        Section << Class "section" << Class secName << Script_ "on intersection(intersecting) having threshold 1 if intersecting and (location.hash of window != '' or window.visualViewport.width <= 860) then trigger click on previous <a/>" ? body 
+        Section << Class "section" << Class secName << Script_ "on intersection(intersecting) having threshold 0.75 if intersecting and (location.hash of window != '' or window.visualViewport.width <= 860) then trigger click on previous <a/>" ? body 
 
 menu = do
     Div << Class "menu-wrapper" << Tabindex "1" ? do
