@@ -244,6 +244,7 @@ css = do
         minHeight (px 200)
         maxHeight (px 350)
         overflow scroll
+        overflowWrap breakWord
     ".subsection" ? do
         a ? do
             paddingLeft (em 0.5)
