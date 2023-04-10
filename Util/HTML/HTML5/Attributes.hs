@@ -123,6 +123,11 @@ newtype HxExt     = HxExt String
 newtype XsltTemplate = XsltTemplate String
 newtype Script_ = Script_ String
 
+newtype Async = Async String
+newtype Charset = Charset String
+newtype DataWidth = DataWidth String
+newtype DataChrome = DataChrome String
+
 -- Global attributes
 instance AttributeLike Id              where toAttr (Id v)              = Attribute "id" v
 instance AttributeLike Class           where toAttr (Class v)           = Attribute "class" v
@@ -238,3 +243,8 @@ instance AttributeLike HxSwap where toAttr (HxSwap v) = Attribute "hx-swap" v
 instance AttributeLike HxExt where toAttr (HxExt v) = Attribute "hx-ext" v
 instance AttributeLike XsltTemplate where toAttr (XsltTemplate v) = Attribute "xslt-template" v
 instance AttributeLike Script_ where toAttr (Script_ v) = Attribute "script" v
+
+instance AttributeLike Async where toAttr (Async v) = Attribute "async" v
+instance AttributeLike Charset where toAttr (Charset v) = Attribute "charset" v
+instance AttributeLike DataWidth where toAttr (DataWidth v) = Attribute "data-width" v
+instance AttributeLike DataChrome where toAttr (DataChrome v) = Attribute "data-chrome" v

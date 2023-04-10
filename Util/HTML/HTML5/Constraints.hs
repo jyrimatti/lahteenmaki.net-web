@@ -134,6 +134,11 @@ type instance LegalAttribute any HxExt = Legal
 type instance LegalAttribute any XsltTemplate = Legal
 type instance LegalAttribute any Script_ = Legal
 
+type instance LegalAttribute Script Async = Legal
+type instance LegalAttribute Script Charset = Legal
+type instance LegalAttribute A DataWidth = Legal
+type instance LegalAttribute A DataChrome = Legal
+
 
 
 -- Other (unknown) elements may appear anywhere by default

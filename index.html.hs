@@ -173,8 +173,8 @@ toots = box "toots" $ do
           "loading..."
 
 tweets = box "tweets" $ do
-    A << Class "twitter-timeline" << Href "https://twitter.com/jyrimatti" << Data "widget-id" "331834452940570626" << Data "chrome" "noheader nofooter transparent noborders" ? "Tweets by @jyrimatti"
-    Script ? raw "!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+\"://platform.twitter.com/widgets.js\";fjs.parentNode.insertBefore(js,fjs);}}(document,\"script\",\"twitter-wjs\");"
+    A << Class "twitter-timeline" << DataWidth "368" << DataChrome "transparent nofooter noborders noheader" << Href "https://twitter.com/jyrimatti?ref_src=twsrc%5Etfw" ? "Tweets by @jyrimatti"
+    Script << Async "async" << Src "https://platform.twitter.com/widgets.js" << Charset "utf-8" ? empty
 
 books = box "read books" $ do
   Div << Script_ "on htmx:afterSwap repeat in (<blockquote /> in me) set its innerHTML to its innerText"
