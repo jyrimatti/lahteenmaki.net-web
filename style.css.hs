@@ -72,6 +72,7 @@ highlight = do
             display flex
             flexDirection column
             overflow visible
+            transform none
             "scroll-snap-stop" -: "always"
             "scroll-snap-align" -: "start"
             ".section" ? do
@@ -80,6 +81,11 @@ highlight = do
                 marginLeft  (other "calc(calc(100vw - 21em) / 2)")
                 marginRight (other "calc(calc(100vw - 21em) / 2)")
                 width (em 21)
+        query (MediaType "all") [ Feature "min-width" $ Just "860px" ] $ do
+            ".off" ? do
+                display inline
+            ".on" ? do
+                display none
         ".boxcontent" ? do
             maxHeight (other "calc(100vh - 17em)")
         ".carousel" ? do
@@ -225,11 +231,6 @@ css = do
     ".section-wrapper" ? do
         display inlineBlock
         overflow hidden
-    ".content:has(:target) .section-wrapper" ? do
-        transform none
-    query (MediaType "all") [ Feature "max-width" $ Just "860px" ] $ do
-        ".content .section-wrapper" ? do
-            transform none
     ".section" ? do
         margin (em 1) (em 1) (em 1) (em 1)
         maxWidth (em 25)
@@ -239,10 +240,6 @@ css = do
         roundCorners
         fontFamily ["cursive"] []
     ".off" ? do
-        display none
-    ":target ~ * .off" <> ":target .off" ? do
-        display inline
-    ":target ~ * .on" <> ":target .on" ? do
         display none
     ".boxcontent" ? do
         minHeight (px 200)
