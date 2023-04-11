@@ -65,8 +65,8 @@ section secName body = do
         Section << Class "section" << Class secName << Script_ "on intersection(intersecting) having threshold 0.75 if intersecting and (location.hash of window != '' or window.visualViewport.width <= 860) then trigger click on previous <a/>" ? body 
 
 menu = do
-    Div << Class "menu-wrapper" << Tabindex "1" ? do
-        Div << Class "icon" ? "☰"
+    Div << Class "menu-wrapper" ? do
+        Div << Class "icon" << Tabindex "1" ? "☰"
         Nav << Class "menu" ? do
             menuItem "presentations" 
             menuItem "java-stuff" 

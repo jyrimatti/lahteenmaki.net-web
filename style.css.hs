@@ -195,9 +195,10 @@ css = do
             ".icon:hover ~ .menu" <> ".menu:hover" ? do
                 visibility visible
                 opacity 1
-    ".menu-wrapper:focus .menu" ? do
-        visibility visible
-        opacity 1
+    ".menu-wrapper" ? do
+        ".icon:focus ~ .menu" <> ".menu:hover" ? do
+            visibility visible
+            opacity 1
     
     ".header" ? do
         textShadow 0 0 (px 50) lightBlue
