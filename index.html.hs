@@ -35,14 +35,14 @@ content = ("text/html",) $ Html << Lang "en" ? do
         Script ? "window.onload = function() { htmx.trigger(window, 'customLoad'); }" -- TODO: remove when HTMX bug fixed
         Script ? analytics
     Body << HxExt "swap-notitle,fix-relative-hrefs" ? do
-        Object << Id "template"  << Data_ "rss.xml" ? empty
-        Object << Id "template2" << Data_ "goodreads.xml" ? empty
+        Object << Id "template"  << Tabindex "-1" << Data_ "rss.xml" ? empty
+        Object << Id "template2" << Tabindex "-1" << Data_ "goodreads.xml" ? empty
         Input << Id "lightmode" << Class "lightmode" << Type "checkbox" ? empty
         Input << Id "darkmode"  << Class "darkmode"  << Type "checkbox" ? empty
         Div << Class "container" ? do
-            Label << Class "lightmode" << For "lightmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
-            Label << Class "darkmode"  << For "darkmode"  << TitleA "Switch between lightmode/darkmode" ? "🌓"
             menu
+            Label << Class "lightmode" << For "lightmode" << Tabindex "2" << Script_ "on keydown[key is 'Enter'] set checked of #lightmode to not(checked) of #lightmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
+            Label << Class "darkmode"  << For "darkmode"  << Tabindex "2" << Script_ "on keydown[key is 'Enter'] set checked of #darkmode to not(checked) of #darkmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
             Header << Class "header" ? do
                 H1 ? "jyri-matti lähteenmäki"
             Main << Class "content" ? do
@@ -61,13 +61,13 @@ content = ("text/html",) $ Html << Lang "en" ? do
 
 section secName body = do
     Div << Id secName <<  Class "section-wrapper" ? do
-        A << Href ("#" <> secName) << Class "carousel" << Onclick "this.click()" ? "" -- Chrome needs this onclick handler for whatever reason...
+        A << Href ("#" <> secName) << Class "carousel" << Tabindex "3" << Onclick "this.click()" ? "" -- Chrome needs this onclick handler for whatever reason...
         Section << Class "section" << Class secName << Script_ "on intersection(intersecting) having threshold 0.75 if intersecting and (location.hash of window != '' or window.visualViewport.width <= 860) then trigger click on previous <a/>" ? body 
 
 menu = do
-    Div << Class "menu-wrapper" ? do
+    Nav << Class "menu-wrapper" ? do
         Div << Class "icon" << Tabindex "1" ? "☰"
-        Nav << Class "menu" ? do
+        Ul << Class "menu" ? do
             menuItem "presentations" 
             menuItem "java-stuff" 
             menuItem "blog" 
@@ -81,7 +81,8 @@ menu = do
             menuItem "this-site" 
 
 menuItem secName = do
-    A << Id ("menu-" <> secName) << Href ("#" <> secName) ? text secName
+    Li ? do
+        A << Id ("menu-" <> secName) << Href ("#" <> secName) << Tabindex "1" ? text secName
 
 box secName body = do
     H2 ? do

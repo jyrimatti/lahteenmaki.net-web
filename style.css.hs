@@ -162,6 +162,8 @@ css = do
         display flex
         visibility hidden
         opacity 0
+        listStyleType none
+        margin nil nil nil nil
     ".menu-wrapper" ? do
         display none
         position absolute
@@ -175,7 +177,8 @@ css = do
             padding (em 0.5) (em 0.5) (em 0.5) (em 0.5)
             lineHeight (em 1.5)
             fontVariant smallCaps
-            transition "opacity" (ms 250) ease 0
+            transitions [("opacity",    (ms 250), ease, (ms 0)),
+                         ("visibility", (ms 250), ease, (ms 250))]
             "a" ? do
                 color almostBlack
                 borderLeftWidth (px 1)
@@ -196,7 +199,7 @@ css = do
                 visibility visible
                 opacity 1
     ".menu-wrapper" ? do
-        ".icon:focus ~ .menu" <> ".menu:hover" ? do
+        ".icon:focus ~ .menu" <> ".menu:hover" <> ".menu:focus-within" ? do
             visibility visible
             opacity 1
     
