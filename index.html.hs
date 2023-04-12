@@ -35,8 +35,8 @@ content = ("text/html",) $ Html << Lang "en" ? do
         Script ? "window.onload = function() { htmx.trigger(window, 'customLoad'); }" -- TODO: remove when HTMX bug fixed
         Script ? analytics
     Body << HxExt "swap-notitle,fix-relative-hrefs" ? do
-        Object << Id "template"  << Tabindex "-1" << Data_ "rss.xml" << Alt "XSLT for Mastodon RSS" ? empty
-        Object << Id "template2" << Tabindex "-1" << Data_ "goodreads.xml" << Alt "XSLT for GoodReads RSS" ? empty
+        Object << Id "template"  << Tabindex "-1" << Data_ "rss.xml" << TitleA "XSLT for Mastodon RSS" ? empty
+        Object << Id "template2" << Tabindex "-1" << Data_ "goodreads.xml" << TitleA "XSLT for GoodReads RSS" ? empty
         Input << Id "lightmode" << Class "lightmode" << Type "checkbox" << AriaP "label" "Toggle between lightmode and darkmode" ? empty
         Input << Id "darkmode"  << Class "darkmode"  << Type "checkbox" << AriaP "label" "Toggle between lightmode and darkmode" ? empty
         Div << Class "container" ? do
@@ -44,7 +44,8 @@ content = ("text/html",) $ Html << Lang "en" ? do
             Label << Class "lightmode" << For "lightmode" << Tabindex "0" << Script_ "on keydown[code is 'Enter' or code is 'Space'] set checked of #lightmode to not(checked) of #lightmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
             Label << Class "darkmode"  << For "darkmode"  << Tabindex "0" << Script_ "on keydown[code is 'Enter' or code is 'Space'] set checked of #darkmode to not(checked) of #darkmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
             Header << Class "header" ? do
-                H1 ? "jyri-matti lähteenmäki"
+                H1 ? do
+                    A << Href "https://lahteenmaki.net" ? "jyri-matti lähteenmäki"
             Main << Class "content" ? do
                 section "presentations" presentations
                 section "java-stuff" javastuff
@@ -68,6 +69,8 @@ menu = do
     Nav << Class "menu-wrapper" ? do
         Div << Class "icon" << Tabindex "0" ? "☰"
         Ul << Class "menu" ? do
+            Li ? do
+                A << Id "menu-home" << Href "https://lahteenmaki.net" ? "home"
             menuItem "presentations" 
             menuItem "java-stuff" 
             menuItem "blog" 
@@ -88,7 +91,7 @@ box secName body = do
     H2 ? do
         A << Class "on" << Href ("#" ++ map (\c -> if c == ' ' then '-' else c) secName) ? text secName
         A << Class "off" << Href "#" ? text secName
-    Div << Class "boxcontent" ? body
+    Div << Class "boxcontent" << Tabindex "0" ? body
 
 block title href body = Div << Class "subsection" ? do
                            H3 ? do

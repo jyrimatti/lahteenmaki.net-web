@@ -274,6 +274,8 @@ css = do
     "body:has(:target)" ? do
         highlight
     query (MediaType "all") [ Feature "max-width" $ Just "860px" ] $ do
+        "#menu-home" ? do
+            display none
         ".container" ? do
             highlight
     

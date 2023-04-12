@@ -32,8 +32,6 @@ type instance LegalAttribute any Tabindex = Legal
 type instance LegalAttribute any TitleA = Legal
 type instance LegalAttribute any Translate = Legal
 
-type instance LegalAttribute Object Alt = Legal
-
 -- Global event handler attributes
 type instance LegalAttribute any Onabort = Legal
 type instance LegalAttribute any Onblur = Legal
@@ -182,6 +180,7 @@ type instance LegalChild Div Article = Legal
 type instance LegalChild Div Main = Legal
 type instance LegalChild Main Div = Legal
 type instance LegalChild Script String = Legal
+type instance LegalChild H1 A = Legal
 type instance LegalChild H2 A = Legal
 type instance LegalChild H2 Label = Legal
 type instance LegalChild H3 A = Legal
