@@ -32,6 +32,8 @@ type instance LegalAttribute any Tabindex = Legal
 type instance LegalAttribute any TitleA = Legal
 type instance LegalAttribute any Translate = Legal
 
+type instance LegalAttribute Object Alt = Legal
+
 -- Global event handler attributes
 type instance LegalAttribute any Onabort = Legal
 type instance LegalAttribute any Onblur = Legal

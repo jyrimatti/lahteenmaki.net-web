@@ -26,6 +26,7 @@ newtype Spellcheck = Spellcheck String
 newtype Tabindex = Tabindex String
 newtype TitleA = TitleA String
 newtype Translate = Translate String
+newtype Alt = Alt String
 
 -- Global event handler attributes
 newtype Onabort = Onabort String
@@ -150,6 +151,7 @@ instance AttributeLike Spellcheck      where toAttr (Spellcheck v)      = Attrib
 instance AttributeLike Tabindex        where toAttr (Tabindex v)        = Attribute "tabindex" v
 instance AttributeLike TitleA          where toAttr (TitleA v)          = Attribute "title" v
 instance AttributeLike Translate       where toAttr (Translate v)       = Attribute "translate" v
+instance AttributeLike Alt             where toAttr (Alt v)             = Attribute "alt" v
 
 -- Global event handler attributes
 instance AttributeLike Onabort where toAttr (Onabort v)   = Attribute "onabort" v
