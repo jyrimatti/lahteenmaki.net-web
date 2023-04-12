@@ -41,8 +41,8 @@ content = ("text/html",) $ Html << Lang "en" ? do
         Input << Id "darkmode"  << Class "darkmode"  << Type "checkbox" ? empty
         Div << Class "container" ? do
             menu
-            Label << Class "lightmode" << For "lightmode" << Tabindex "2" << Script_ "on keydown[key is 'Enter'] set checked of #lightmode to not(checked) of #lightmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
-            Label << Class "darkmode"  << For "darkmode"  << Tabindex "2" << Script_ "on keydown[key is 'Enter'] set checked of #darkmode to not(checked) of #darkmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
+            Label << Class "lightmode" << For "lightmode" << Tabindex "2" << Script_ "on keydown[code is 'Enter' or code is 'Space'] set checked of #lightmode to not(checked) of #lightmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
+            Label << Class "darkmode"  << For "darkmode"  << Tabindex "2" << Script_ "on keydown[code is 'Enter' or code is 'Space'] set checked of #darkmode to not(checked) of #darkmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
             Header << Class "header" ? do
                 H1 ? "jyri-matti lähteenmäki"
             Main << Class "content" ? do
