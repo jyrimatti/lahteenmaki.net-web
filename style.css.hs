@@ -166,7 +166,8 @@ css = do
     
     ".menu" ? do
         display flex
-        visibility hidden
+        position absolute
+        left (px (-99999))
         opacity 0
         listStyleType none
         margin nil nil nil nil
@@ -183,8 +184,8 @@ css = do
             padding (em 0.5) (em 0.5) (em 0.5) (em 0.5)
             lineHeight (em 1.5)
             fontVariant smallCaps
-            transitions [("opacity",    (ms 250), ease, (ms 0)),
-                         ("visibility", (ms 250), ease, (ms 250))]
+            transitions [("opacity",(ms 250), ease, (ms 250)),
+                         ("left",   (ms 250), ease, (ms 0))]
             "a" ? do
                 color almostBlack
                 borderLeftWidth (px 1)
@@ -202,11 +203,11 @@ css = do
     query (MediaType "all") [ Feature "hover" $ Just "hover", Feature "pointer" $ Just "fine" ] $ do
         ".menu-wrapper" ? do
             ".icon:hover ~ .menu" <> ".menu:hover" ? do
-                visibility visible
+                left nil
                 opacity 1
     ".menu-wrapper" ? do
-        ".icon:focus ~ .menu" <> ".menu:hover" <> ".menu:focus-within" ? do
-            visibility visible
+        ".icon:focus ~ .menu" <> ".menu:active" <> ".menu:focus-within" ? do
+            left nil
             opacity 1
     
     ".header" ? do
