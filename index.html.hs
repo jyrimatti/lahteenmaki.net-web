@@ -41,8 +41,8 @@ content = ("text/html",) $ Html << Lang "en" ? do
         Input << Id "darkmode"  << Class "darkmode"  << Type "checkbox" << AriaP "label" "Toggle between lightmode and darkmode" ? empty
         Div << Class "container" ? do
             menu
-            Label << Class "lightmode" << For "lightmode" << Tabindex "2" << Script_ "on keydown[code is 'Enter' or code is 'Space'] set checked of #lightmode to not(checked) of #lightmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
-            Label << Class "darkmode"  << For "darkmode"  << Tabindex "2" << Script_ "on keydown[code is 'Enter' or code is 'Space'] set checked of #darkmode to not(checked) of #darkmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
+            Label << Class "lightmode" << For "lightmode" << Tabindex "0" << Script_ "on keydown[code is 'Enter' or code is 'Space'] set checked of #lightmode to not(checked) of #lightmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
+            Label << Class "darkmode"  << For "darkmode"  << Tabindex "0" << Script_ "on keydown[code is 'Enter' or code is 'Space'] set checked of #darkmode to not(checked) of #darkmode" << TitleA "Switch between lightmode/darkmode" ? "🌓"
             Header << Class "header" ? do
                 H1 ? "jyri-matti lähteenmäki"
             Main << Class "content" ? do
@@ -61,12 +61,12 @@ content = ("text/html",) $ Html << Lang "en" ? do
 
 section secName body = do
     Div << Id secName <<  Class "section-wrapper" ? do
-        A << Href ("#" <> secName) << Class "carousel" << Tabindex "3" << Onclick "this.click()" << AriaP "label" ("Show section " <> secName) ? "" -- Chrome needs this onclick handler for whatever reason...
+        A << Href ("#" <> secName) << Class "carousel" << Tabindex "-1" << Onclick "this.click()" << AriaP "label" ("Show section " <> secName) ? "" -- Chrome needs this onclick handler for whatever reason...
         Section << Class "section" << Class secName << Script_ "on intersection(intersecting) having threshold 0.75 if intersecting and (location.hash of window != '' or window.visualViewport.width <= 860) then trigger click on previous <a/>" ? body 
 
 menu = do
     Nav << Class "menu-wrapper" ? do
-        Div << Class "icon" << Tabindex "1" ? "☰"
+        Div << Class "icon" << Tabindex "0" ? "☰"
         Ul << Class "menu" ? do
             menuItem "presentations" 
             menuItem "java-stuff" 
@@ -82,7 +82,7 @@ menu = do
 
 menuItem secName = do
     Li ? do
-        A << Id ("menu-" <> secName) << Href ("#" <> secName) << Tabindex "1" ? text secName
+        A << Id ("menu-" <> secName) << Href ("#" <> secName) ? text secName
 
 box secName body = do
     H2 ? do
