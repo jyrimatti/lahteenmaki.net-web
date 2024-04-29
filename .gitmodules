@@ -25,6 +25,9 @@
 [submodule "stiebel"]
 	path = stiebel
 	url = git@github.com:jyrimatti/stiebel.git
+[submodule "smarthome"]
+	path = smarthome
+	url = git@github.com:jyrimatti/smarthome.git
 [submodule "ping"]
 	path = ping
 	url = git@github.com:jyrimatti/ping.git
