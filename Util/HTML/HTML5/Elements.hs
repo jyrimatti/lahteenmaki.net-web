@@ -31,6 +31,7 @@ newtype Li     = Li [Attribute]
 newtype Dt     = Dt [Attribute]
 newtype Dd     = Dd [Attribute]
 
+newtype P       = P [Attribute]
 newtype A       = A [Attribute]
 newtype Link    = Link [Attribute]
 newtype Script  = Script [Attribute]
@@ -76,6 +77,7 @@ instance NodeLike Li     where val = Li      ; name _ = "li"       ; attr (Li aa
 instance NodeLike Dt     where val = Dt      ; name _ = "dt"       ; attr (Dt aa)      = aa
 instance NodeLike Dd     where val = Dd      ; name _ = "dd"       ; attr (Dd aa)      = aa
 
+instance NodeLike P      where val = P       ; name _ = "p"        ; attr (P aa)       = aa
 instance NodeLike A      where val = A       ; name _ = "a"        ; attr (A aa)       = aa
 instance NodeLike Link   where val = Link    ; name _ = "link"     ; attr (Link aa)    = aa ; isVoid _ = True
 instance NodeLike Script where val = Script  ; name _ = "script"   ; attr (Script aa)  = aa
