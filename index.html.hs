@@ -51,7 +51,6 @@ content = ("text/html",) $ Html << Lang "en" ? do
                 section "java-stuff" javastuff
                 section "blog" blog
                 section "toots" toots
-                section "tweets" tweets
                 section "read-books" books
                 section "railway-stuff" junailua
                 section "dev" ohjelmointi
@@ -75,7 +74,6 @@ menu = do
             menuItem "java-stuff" 
             menuItem "blog" 
             menuItem "toots" 
-            menuItem "tweets" 
             menuItem "read-books" 
             menuItem "railway-stuff" 
             menuItem "dev" 
@@ -154,7 +152,7 @@ yhteys = box "contact" $ do
 ohjelmointi = box "dev" $ do
     subs "flow" $
         Div ? do
-            A << Href "https://twitter.com/jyrimatti" ? "Twitter"
+            A << Href "https://mastodon.online/@jyrimatti" ? "Mastodon"
     subs "blog" $
         Div ? do
             ahref "https://blog.lahteenmaki.net"
@@ -175,10 +173,6 @@ toots = box "toots" $ do
       << HxTrigger "customLoad from:window"
       << XsltTemplate "template" ?
           "loading..."
-
-tweets = box "tweets" $ do
-    A << Class "twitter-timeline" << DataWidth "368" << DataChrome "transparent nofooter noborders noheader" << Href "https://twitter.com/jyrimatti?ref_src=twsrc%5Etfw" ? "Tweets by @jyrimatti"
-    Script << Async "async" << Src "https://platform.twitter.com/widgets.js" << Charset "utf-8" ? empty
 
 books = box "read books" $ do
   Div << Script_ "on htmx:afterSwap repeat in (<blockquote /> in me) set its innerHTML to its innerText"
