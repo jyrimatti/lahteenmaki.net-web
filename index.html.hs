@@ -50,6 +50,7 @@ content = ("text/html",) $ Html << Lang "en" ? do
                 section "presentations" presentations
                 section "java-stuff" javastuff
                 section "blog" blog
+                section "electricity-spot-prices" spot
                 section "toots" toots
                 section "read-books" books
                 section "railway-stuff" junailua
@@ -73,6 +74,7 @@ menu = do
             menuItem "presentations" 
             menuItem "java-stuff" 
             menuItem "blog" 
+            menuItem "electricity-spot-prices" 
             menuItem "toots" 
             menuItem "read-books" 
             menuItem "railway-stuff" 
@@ -195,6 +197,11 @@ junailua = box "railway stuff" $ do
         Div ? "Finnish railway infrastructure, which I have something to do with"
     block "Jeti-API" "https://rata.digitraffic.fi/jeti-api" $
         Div ? "Finnish railway planned restrictions data, which I have something to do with"
+
+spot = box "electricity spot prices" $ do
+    block "spot.lahteenmaki.net" "https://spot.lahteenmaki.net" $ do
+        P ? "Interactive graphs and API endpoints"
+        IFrame << Src "https://spot.lahteenmaki.net" ? empty
 
 tamasivu = box "this site" $ do
     Ul ? do
