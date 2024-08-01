@@ -48,17 +48,18 @@ content = ("text/html",) $ Html << Lang "en" ? do
                     A << Href "https://lahteenmaki.net" ? "jyri-matti lähteenmäki"
             Main << Class "content" ? do
                 section "presentations" presentations
-                section "java-stuff" javastuff
                 section "blog" blog
-                section "electricity-spot-prices" spot
-                section "toots" toots
-                section "read-books" books
+                section "java-stuff" javastuff
                 section "railway-stuff" junailua
+                section "electricity-spot-prices" spot
+                section "home-automation" homeautomation
+                section "toots" toots
                 section "dev" ohjelmointi
+                section "read-books" books
                 section "famiglia" perhe
                 section "contact" yhteys
                 section "this-site" tamasivu
-                Footer << Class "footer" ? "© Jyri-Matti Lähteenmäki 2023"
+                Footer << Class "footer" ? "© Jyri-Matti Lähteenmäki 2024"
 
 section secName body = do
     Div << Id secName <<  Class "section-wrapper" ? do
@@ -72,13 +73,14 @@ menu = do
             Li ? do
                 A << Id "menu-home" << Href "https://lahteenmaki.net" ? "home"
             menuItem "presentations" 
-            menuItem "java-stuff" 
             menuItem "blog" 
-            menuItem "electricity-spot-prices" 
-            menuItem "toots" 
-            menuItem "read-books" 
+            menuItem "java-stuff" 
             menuItem "railway-stuff" 
+            menuItem "electricity-spot-prices" 
+            menuItem "home-automation"
+            menuItem "toots" 
             menuItem "dev" 
+            menuItem "read-books" 
             menuItem "famiglia" 
             menuItem "contact"
             menuItem "this-site" 
@@ -202,6 +204,14 @@ spot = box "electricity spot prices" $ do
     block "spot.lahteenmaki.net" "https://spot.lahteenmaki.net" $ do
         P ? "Interactive graphs and API endpoints"
         IFrame << Src "https://spot.lahteenmaki.net" ? empty
+
+homeautomation = box "home automation" $ do
+    block "Homekit.sh" "https://github.com/jyrimatti/homekit.sh" $
+        Div ? "Simple accessory bridge for Apple Homekit, implemented as shell scripts."
+    block "Homekit.sh plugins" "https://github.com/jyrimatti/smarthome" $
+        Div ? "Some plugins for Homekit.sh."
+    block "Modbus.sh" "https://github.com/jyrimatti/modbus.sh" $
+        Div ? "Simple Modbus TCP command line client."
 
 tamasivu = box "this site" $ do
     Ul ? do
