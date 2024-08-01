@@ -262,7 +262,7 @@ css = do
             color lightGray
             padding (em 0.6) (em 0.6) (em 0.6) (em 0.6)
             margin 0 (em 1.2) 0 (em 1.2)
-            borderBottom solid (px 1) lightGray
+            borderBottom (px 1) solid lightGray
             fontVariant smallCaps
             textAlign (alignSide sideRight)
         div <? do
