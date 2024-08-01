@@ -19,7 +19,7 @@ content = ("text/html",) $ Html << Lang "en" ? do
         metaKeywords ["jyri-matti lähteenmäki", "programming", "developer", "software", "computer science", "haskell", "scala"]
         metaOGTitle "Lähteenmäki.net | jyri-matti lähteenmäki"
         metaOGType "website"
-        metaOGUrl "http://www.lahteenmaki.net"
+        metaOGUrl "https://www.lahteenmaki.net"
         metaOGSiteName "Lähteenmäki.net"
         Meta << Name "apple-mobile-web-app-title" << Content "lähteenmäki.net" ? empty
         Meta << Name "application-name" << Content "lähteenmäki.net" ? empty
@@ -133,10 +133,10 @@ perhe = box "famiglia" $ do
         H3 ? "iina"
     Div ? do
         H3 ? do
-            A << Href "http://www.facebook.com/laura.lahteenmaki.1" ? "laura"
+            A << Href "https://www.facebook.com/laura.lahteenmaki.1" ? "laura"
     Div ? do
         H3 ? do
-            A << Href "http://www.facebook.com/jyrimatti.lahteenmaki" ? "myself"
+            A << Href "https://www.facebook.com/jyrimatti.lahteenmaki" ? "myself"
 
 yhteys = box "contact" $ do
     Ol ? do
@@ -163,7 +163,7 @@ ohjelmointi = box "dev" $ do
             A << Href "https://pinboard.in/u:jyrimatti/" ? "Pinboard"
     subs "projects" $
         Div ? do
-            A << Href "http://github.com/jyrimatti" ? "GitHub"
+            A << Href "https://github.com/jyrimatti" ? "GitHub"
   where subs title body = Div << Class "subsection" ? do
                                H3 ? title
                                body
