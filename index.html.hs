@@ -33,7 +33,6 @@ content = ("text/html",) $ Html << Lang "en" ? do
         javascript "swap-notitle.js"
         css "style.css"
         Script ? "window.onload = function() { htmx.trigger(window, 'customLoad'); }" -- TODO: remove when HTMX bug fixed
-        Script ? analytics
     Body << HxExt "swap-notitle,fix-relative-hrefs" ? do
         Object << Id "template"  << Tabindex "-1" << Data_ "rss.xml" << TitleA "XSLT for Mastodon RSS" ? empty
         Object << Id "template2" << Tabindex "-1" << Data_ "goodreads.xml" << TitleA "XSLT for GoodReads RSS" ? empty
@@ -223,11 +222,3 @@ tamasivu = box "this site" $ do
             ". Haskell."
         Li ? do
             A << Href "https://github.com/jyrimatti/lahteenmaki.net" ? "https://github.com/jyrimatti/lahteenmaki.net"
-
-analytics = "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\
-\  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\
-\  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\
-\  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');\
-\\
-\  ga('create', 'UA-20222288-1', 'auto');\
-\  ga('send', 'pageview');"
