@@ -110,6 +110,8 @@ javastuff = box "java-stuff" $ do
         Div ? "Base utilities for making versatile APIs"
 
 presentations = box "presentations" $ do
+    block "Systemd: Running stuff on the ground" "https://github.com/jyrimatti/systemd/" $
+        Div ? "Brief introduction to Systemd"
     block "Routinely coroutining" "https://lahteenmaki.net/dev_*21/" $
         Div ? "About coroutines and concurrent programming"
     block "The point of birds" "https://lahteenmaki.net/dev_*19/" $
