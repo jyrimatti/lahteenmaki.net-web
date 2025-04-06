@@ -224,3 +224,6 @@ tamasivu = box "this site" $ do
             ". Haskell."
         Li ? do
             A << Href "https://github.com/jyrimatti/lahteenmaki.net" ? "https://github.com/jyrimatti/lahteenmaki.net"
+        Li ? do
+            "Hosted in "
+            A << Href "https://upcloud.com" ? "Upcloud"
